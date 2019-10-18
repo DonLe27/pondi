@@ -16,6 +16,7 @@ import SideBar from './SideBar.js';
 import Prompt from './Prompt.js';
 import FriendPage from './Friends.js';
 import FriendProfile from './FriendProfile';
+import Settings from './Settings'
 
 class StreamHolder extends React.Component {
     constructor(props) {
@@ -36,6 +37,7 @@ class StreamHolder extends React.Component {
             friend:false,
             ocean: false,
             prompt: false,
+            settings: false,
             friendProfile: false,
             profileName: '',
             prompts: [],
@@ -67,31 +69,32 @@ class StreamHolder extends React.Component {
 
     handleAdd(i) {}
     addFriends(i) {
-        this.setState({ archive: false, stream: false, ocean: false, prompt: false, friend: true, friendProfile: false });
+        this.setState({ archive: false, stream: false, ocean: false, prompt: false, friend: true, friendProfile: false, settings: false});
     }
     addStream(i) {
-        this.setState({ archive: false, stream: true, ocean: false, prompt: false, friend: false, friendProfile: false });
+        this.setState({ archive: false, stream: true, ocean: false, prompt: false, friend: false, friendProfile: false, settings: false});
     }
 
     addOcean(i) {
-        this.setState({ archive: false, stream: false, ocean: true, prompt: false, friend: false, friendProfile: false});
+        this.setState({ archive: false, stream: false, ocean: true, prompt: false, friend: false, friendProfile: false, settings: false});
     }
 
     addarchive(i) {
-        this.setState({ archive: true, stream: false, ocean: false, prompt: false,friend: false, friendProfile: false });
-        console.log(this.addarchive)
+        this.setState({ archive: true, stream: false, ocean: false, prompt: false,friend: false, friendProfile: false, settings: false});
+
     }
 
     addPrompt(i) {
-        this.setState({ archive: false, stream: false, ocean: false, prompt: true,friend: false, friendProfile: false });  
+        this.setState({ archive: false, stream: false, ocean: false, prompt: true,friend: false, friendProfile: false, settings: false});  
+    }
+    addSettings(i) {
+        this.setState({ archive: false, stream: false, ocean: false, prompt: false,friend: false, friendProfile: false, settings: true });  
     }
     addFriendProfile(friendName) {
-        this.setState({ archive: false, stream: false, ocean: false, prompt: false,friend: false, friendProfile: true, profileName : friendName});
-        console.log("PROFILE " + friendName)
+        this.setState({ archive: false, stream: false, ocean: false, prompt: false,friend: false, friendProfile: true, profileName : friendName, settings: false});
         document.body.style.margin = "0";
         //document.body.style.overflow = "hidden";
         let token = this.props.token;
-        console.log("TOKEN:", token);
         let headers = {
             "Content-Type": "application/json",
             'Accept': 'application/json',
@@ -104,14 +107,11 @@ class StreamHolder extends React.Component {
                 setTimeout(() => {
                     fetch("https://backpondi.herokuapp.com/api/auth/friendprofile/?friendname=" + friendName,  {headers, method: "GET"})
                     .then(res => {
-                        console.log('PROFILE_RESPONSE:', res);
                         if (res.status < 500) {
                             return res.json().then(data => {
-                                console.log('Friend Profile Posts: ', data);
                                 this.setState({
                                     friendProfilePosts: data,
                                 })
-                                console.log(this.state.profileName)
                             })
         
                             
@@ -126,7 +126,6 @@ class StreamHolder extends React.Component {
         document.body.style.margin = "0";
         //document.body.style.overflow = "hidden";
         let token = this.props.token;
-        console.log("TOKEN:", token);
         let headers = {
             "Content-Type": "application/json",
             'Accept': 'application/json',
@@ -138,14 +137,9 @@ class StreamHolder extends React.Component {
         setTimeout(() => {
             fetch('https://backpondi.herokuapp.com/api/auth/allfriends',  {headers, method: "GET"})
             .then(res => {
-                console.log('FRIEND_RESPONSE:', res);
                 if (res.status < 500) {
                     return res.json().then(data => {
                         var allFriends = JSON.parse(data)
-                        console.log(allFriends)
-                        console.log("FRIENDS", allFriends["friends"])
-                        console.log("CLOSE FRIENDS", allFriends["closefriends"])
-                        console.log("PENDING FRIENDS", allFriends["pendingfriends"])
                         this.setState({
                             friends: allFriends["friends"],
                             closeFriends: allFriends["closefriends"],
@@ -165,7 +159,6 @@ class StreamHolder extends React.Component {
         document.body.style.margin = "0";
         //document.body.style.overflow = "hidden";
         let token = this.props.token;
-        console.log("TOKEN:", token);
         let headers = {
             "Content-Type": "application/json",
             'Accept': 'application/json',
@@ -178,7 +171,6 @@ class StreamHolder extends React.Component {
                 setTimeout(() => {
                     fetch('https://backpondi.herokuapp.com/api/auth/myposts/',  {headers, method: "GET"})
                     .then(res => {
-                        console.log('PROFILE_RESPONSE:', res);
                         if (res.status < 500) {
                             return res.json().then(data => {
                                 console.log('POSTS:', data);
@@ -226,6 +218,7 @@ class StreamHolder extends React.Component {
                             addOcean={this.addOcean.bind(this)}
                             addPrompt={this.addPrompt.bind(this)}
                             addFriends={this.addFriends.bind(this)}
+                            addSettings={this.addSettings.bind(this)}
                         />,
                             username : data.user.username,
                             avatar : data.animal,
@@ -248,10 +241,8 @@ class StreamHolder extends React.Component {
         setTimeout(() => {
             fetch('https://backpondi.herokuapp.com/api/auth/myposts/',  {headers, method: "GET"})
             .then(res => {
-                console.log('PROFILE_RESPONSE:', res);
                 if (res.status < 500) {
                     return res.json().then(data => {
-                        console.log('MY POSTS:', data);
                         this.setState({
                             myposts: data
                         })
@@ -270,10 +261,8 @@ class StreamHolder extends React.Component {
                 setTimeout(() => {
             fetch('https://backpondi.herokuapp.com/api/auth/profile/',  {headers, method: "GET"})
             .then(res => {
-                console.log('PROFILE_RESPONSE:', res);
                 if (res.status < 500) {
                     return res.json().then(data => {
-                        console.log('MY PROFILE:', data);
                         this.setState({
                             myprofile: data
                         })
@@ -291,10 +280,8 @@ class StreamHolder extends React.Component {
         setTimeout(() => {
             fetch('https://backpondi.herokuapp.com/api/allprompts/',  {headers, method: "GET"})
             .then(res => {
-                console.log('PROFILE_RESPONSE:', res);
                 if (res.status < 500) {
                     return res.json().then(data => {
-                        console.log('POSTS:', data);
                         this.setState({
                             prompts: data
                         })
@@ -317,10 +304,6 @@ class StreamHolder extends React.Component {
                 if (res.status < 500) {
                     return res.json().then(data => {
                         var allFriends = JSON.parse(data)
-                        console.log(allFriends)
-                        console.log("FRIENDS", allFriends["friends"])
-                        console.log("CLOSE FRIENDS", allFriends["closefriends"])
-                        console.log("PENDING FRIENDS", allFriends["pendingfriends"])
                         this.setState({
                             friends: allFriends["friends"],
                             closeFriends: allFriends["closefriends"],
@@ -364,7 +347,6 @@ class StreamHolder extends React.Component {
             //    console.log('FRIEND RESPONSE:', res);
                 if (res.status < 500) {
                     return res.json().then(data => {
-                        console.log('FRIENDPOSTS:', data);
                         this.setState({
                             friendPosts: data
                         })
@@ -382,21 +364,12 @@ class StreamHolder extends React.Component {
 
     }
 
-    componentWillUnmount() {
-        //document.body.style.overflow = "hidden";
-        
-    }
-
 
     render() {
-        // if (!this.props.isAuthenticated) {
-        //   return <Redirect to="/" />
-        // }
+
 
         const { ...props } = this.props;
-        console.log("FRIEND PAGE STATUS " + this.state.friend)
         return (
-            //this.state.loading ? this.props.loadUser() :
             <div>
 
             <Motion 
@@ -470,7 +443,7 @@ class StreamHolder extends React.Component {
                 )}
       
         </Motion>
-                 <Motion 
+        <Motion 
             defaultStyle={{opacity: 0}}
             style={{opacity: spring(this.state.friendProfile ? 1 : 0, {stiffness: 50, damping: 20})}}
         >
@@ -481,18 +454,21 @@ class StreamHolder extends React.Component {
 
                )}
         </Motion>
+        <Motion 
+            defaultStyle={{opacity: 0}}
+            style={{opacity: spring(this.state.settings ? 1 : 0, {stiffness: 50, damping: 20})}}
+        >
+            {(style) => (
+                <div  style={{opacity: style.opacity}}>
+            {this.state.settings && <Settings />}
+                          </div>
 
-         
-       
-
-
-
+                )}
+        </Motion>
        < Logout className="Logout-button"/> 
       </div>
-
         );
     }
-
 }
 
 const mapStateToProps = state => {

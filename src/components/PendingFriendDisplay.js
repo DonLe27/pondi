@@ -1,7 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import '../styles/pendingfrienddisplay.css';
-import ProfPic from './ProfPic.js'
 import { Button } from "react-bootstrap";
 class PendingFriendDisplay extends React.Component {
 

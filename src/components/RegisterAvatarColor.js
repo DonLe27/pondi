@@ -60,14 +60,7 @@ class RegisterAvatarColor extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log(this.props.updateAvatarColor(
-            this.state
-        ));
 
-        // somehow check whether or not the user was registered
-
-        //this.register_requested();
-    	//return (<Redirect to="/home" />);
     }	
 
     redirectToHome() {
@@ -76,7 +69,6 @@ class RegisterAvatarColor extends Component {
 
     render() {
         if (this.state.redirect === true) {
-            console.log('REDIRECTS FOR SOME REASON1');
             return (<Redirect to='/home'></Redirect>)
         }
         return (

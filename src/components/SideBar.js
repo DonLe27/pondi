@@ -17,7 +17,6 @@ class Username extends React.Component {
   }
   
   render() {
-    console.log("Rendering username:", this.props.username)
     return <div className="Username">{this.props.username}</div>;
   }
 }
@@ -51,6 +50,15 @@ class SideBar extends React.Component {
           className="Button"
           block
           bsSize="large"
+         // addarchive={this.props.addarchive}
+          onClick={i => this.props.addarchive("somevar")}
+        >
+          pond
+        </Button>
+        <Button
+          className="Button"
+          block
+          bsSize="large"
        //   addStream={this.props.addStream}
           onClick={i => this.props.addStream("somevar")}
         >
@@ -65,15 +73,7 @@ class SideBar extends React.Component {
         >
           ocean
         </Button>
-        <Button
-          className="Button"
-          block
-          bsSize="large"
-         // addarchive={this.props.addarchive}
-          onClick={i => this.props.addarchive("somevar")}
-        >
-          archive
-        </Button>
+        
         <Button
           className="Button"
           block
@@ -91,6 +91,15 @@ class SideBar extends React.Component {
           onClick={i => this.props.addFriends("somevar")}
         >
           friends
+        </Button>
+        <Button
+          className="Button"
+          block
+          bsSize="large"
+        //  addarchive={this.props.addPrompt}
+          onClick={i => this.props.addSettings("somevar")}
+        >
+          settings
         </Button>
 
         <img className="sidebar-vector1" src={vec1} alt="vector1" />

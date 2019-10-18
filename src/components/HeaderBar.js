@@ -18,7 +18,6 @@ class HeaderBar extends React.Component{
 	{
 		if (newProps.header != this.props.header)
 		{
-			console.log(newProps.header)
 			this.setState({
 				categories : newProps.header
 			})

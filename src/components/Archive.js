@@ -28,7 +28,7 @@ class Archive extends React.Component{
 					<PromptDisplay key={i} title={question} content={p["body"]} date={p["timestamp"]} avatar={this.avatar}/>
 					);
 		}
-		console.log("Rendering archive")
+
 	}
 	componentWillReceiveProps(newProps)
 	{
@@ -53,7 +53,7 @@ class Archive extends React.Component{
 							<PromptDisplay key={i} title={question} content={p["body"]} date={p["timestamp"]} avatar={this.avatar}/>
 							);
 			}
-			console.log("Rendering archive again")
+		
 		}
 	}
 
@@ -63,7 +63,7 @@ class Archive extends React.Component{
 		return (
 		
 		<div className="Archive">
-		<HeaderBar header="Archive"/>
+		<HeaderBar header="Pond"/>
 		<Categories />
 		{this.prompts}
 		</div>

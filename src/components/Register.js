@@ -68,10 +68,6 @@ class Register extends Component {
     }
 
     handleSubmit(event) {
-        // if (this.state.password !== this.state.repeated_password) {
-        //     this.state.show_error = true;
-        //     this.state.error_message = "Passwords do not match.";
-        // }
         event.preventDefault();
         console.log(this.props.register(
             this.state.username,

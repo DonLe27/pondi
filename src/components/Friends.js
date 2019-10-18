@@ -36,7 +36,6 @@ class FriendPage extends React.Component{
 			pendingFriendDisplays : pendingFriendDisplays,
 			searchedFriend : null
 		}
-		console.log("Rendering friends")
 	}
 	isFriend = (friendname) => {
 		var res = false;
@@ -108,8 +107,7 @@ class FriendPage extends React.Component{
 			this.setState({
 				friendDisplays: newFriendDisplays
 			})
-			console.log("RECEIVED NEW FRIENDS" )
-			console.log(newProps.friends)
+	
 		}
 		if (newProps.pendingFriends != this.props.pendingFriends){
 			var newPendingFriendDisplays = []
@@ -136,8 +134,7 @@ class FriendPage extends React.Component{
 			this.setState({
 				closeFriendDisplays: newCloseFriendDisplays
 			})
-			console.log("RECEIVED NEW CLOSE FRIENDS")
-			console.log(newProps.closeFriends)
+		
 		}	
 		
 	}

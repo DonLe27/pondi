@@ -31,8 +31,7 @@ class FriendProfile extends React.Component{
 					<PromptDisplay key={i} title={question} content={p["body"]} date={p["timestamp"]} avatar={this.avatar}/>
 					);
 		}
-		console.log("Rendering friend profile")
-		console.log(this.props.friendName)
+		
 	}
 	componentWillReceiveProps(newProps)
 	{
@@ -57,7 +56,7 @@ class FriendProfile extends React.Component{
 							<PromptDisplay key={i} title={question} content={p["body"]} date={p["timestamp"]} avatar={this.avatar}/>
 							);
 			}
-			console.log("Rendering friend profile again")
+	
 		}
 	}
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import '../styles/transitions.css';
 import '../styles/ocean.css';
 import PromptDisplay from './PromptDisplay.js'
@@ -17,8 +16,6 @@ class Ocean extends React.Component {
 		this.avatar=this.props.avatar;
 		this.prompts = [];
 		this.allprompts = this.props.prompts
-		console.log(this.allprompts)
-		console.log(this.allprompts[0])
 		for (var i = 0; i < this.props.oceanPosts.length; i++){
 			var p = this.props.oceanPosts[i];
 			var question;
