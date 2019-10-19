@@ -6,9 +6,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {  Button } from "react-bootstrap";
 import "../styles/prompt.css";
-
+import "./ChoosePrompt.js"
 import { connect } from "react-redux";
 import { auth } from "../actions";
+import ChoosePrompt from "./ChoosePrompt.js";
 class Prompt extends React.Component {
   constructor(props) {
     super(props);
@@ -154,12 +155,6 @@ class Prompt extends React.Component {
     }
   }
 
-  /*
-  componentDidUpdate(){
-    //console.log(this.props.myposts)
-  }
-  */
-
 
   render() {
     //Make buttons for changing prompts
@@ -175,7 +170,11 @@ class Prompt extends React.Component {
     }
     return (
       <div>
-        <div className="Prompt">{this.state.prompt}</div>
+        <div className="Prompt">
+          
+          {this.state.prompt}
+        </div>
+        
         <input
           type="image"
           className="Refresh"
