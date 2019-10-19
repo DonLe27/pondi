@@ -8,7 +8,6 @@ class ChoosePrompt extends React.Component {
 
 	constructor(props){
 		super(props);
-		this.prompt = this.props.prompt
 
 	}
 
@@ -18,7 +17,7 @@ class ChoosePrompt extends React.Component {
 		return (
 		
 		<div>
-            <h>{this.state.prompt}</h>
+            <h className="title">{this.props.prompt}</h>
 		</div>
 		);
 	}
