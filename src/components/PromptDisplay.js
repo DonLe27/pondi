@@ -9,7 +9,9 @@ class PromptDisplay extends React.Component {
 		super(props);
 		this.prompt_title = this.props.title;
 		this.prompt_contents = this.props.content;
-		this.prompt_date = this.props.date.slice(0,10);
+		if (typeof this.props.date !== 'undefined'){
+			this.prompt_date = this.props.date.slice(0,10);
+		}
 		this.avatar = this.props.avatar;
 		
 	}
