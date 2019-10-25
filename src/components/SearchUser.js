@@ -1,7 +1,7 @@
 import React from 'react';
 
 import '../styles/searchuser.css';
-import { Button, FormGroup, FormControl} from "react-bootstrap"
+import { Button} from "react-bootstrap"
 
 class SearchUser extends React.Component {
 

@@ -437,7 +437,7 @@ class StreamHolder extends React.Component {
         >
             {(style) => (
                 <div  style={{opacity: style.opacity}}>
-            {this.state.friend && <FriendPage key={5} prompts={this.state.prompts} getFriendProfile={this.addFriendProfile.bind(this)} friendPosts={this.state.friendPosts} getMyFriends={this.getMyFriends.bind(this)} friends={this.state.friends} closeFriends={this.state.closeFriends} pendingFriends={this.state.pendingFriends}/>}
+            {this.state.friend && <FriendPage key={5} searching={true} prompts={this.state.prompts} getFriendProfile={this.addFriendProfile.bind(this)} friendPosts={this.state.friendPosts} getMyFriends={this.getMyFriends.bind(this)} friends={this.state.friends} closeFriends={this.state.closeFriends} pendingFriends={this.state.pendingFriends}/>}
                           </div>
 
                 )}

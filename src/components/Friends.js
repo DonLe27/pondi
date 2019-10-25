@@ -1,8 +1,6 @@
 import React from 'react';
-import HeaderBar from './HeaderBar.js'
 import UserDisplay from './UserDisplay'
 import SearchUser from './SearchUser'
-import SearchedFriendDisplay from './SearchedFriendDisplay'
 import {auth}  from "../actions";
 import { connect } from "react-redux";
 class FriendPage extends React.Component{
@@ -34,7 +32,8 @@ class FriendPage extends React.Component{
 			closeFriendDisplays : closeFriendDisplays,
 			pendingFriendDisplays : pendingFriendDisplays,
 			searchedUser : null, 
-			searchedUserType: null
+			searchedUserType: null,
+			searching: this.props.searching
 
 		}
 	}
@@ -163,21 +162,29 @@ class FriendPage extends React.Component{
 	
 	render() {
 		console.log(this.isFriend(this.state.searchedUser))
-		return (
-		
-		<div >
-			<SearchUser searchUser={this.searchUserHandler.bind(this)}/>
-		{  this.state.searchedUser && <UserDisplay userType={this.state.searchedUserType} key={this.state.searchedUser + "s"} acceptFriend={this.acceptFriendHandler.bind(this)} deleteFriend={this.deleteFriendHandler.bind(this)} getFriendProfile={this.props.getFriendProfile} requestFriend={this.requestFriendHandler.bind(this)} username={this.state.searchedUser} /> }
-			<h1 align="center" >friends</h1>
-		{this.state.friendDisplays}
-		<h1 align="center" >close friends</h1>
-		{this.state.closeFriendDisplays}
-		<h1 align="center" >pending friends</h1>
-		{this.state.pendingFriendDisplays}
+		console.log(this.state.searching)
+		if (this.state.searching){
+			return (
+			<div>
+				<SearchUser searchUser={this.searchUserHandler.bind(this)}/>
+				{ this.state.searchedUser && <UserDisplay userType={this.state.searchedUserType} key={this.state.searchedUser + "s"} acceptFriend={this.acceptFriendHandler.bind(this)} deleteFriend={this.deleteFriendHandler.bind(this)} getFriendProfile={this.props.getFriendProfile} requestFriend={this.requestFriendHandler.bind(this)} username={this.state.searchedUser} /> }
+			</div>
+			)
+		}
+		else{
+			return (
+				<div >
+					<h1 align="center" >friends</h1>
+				{this.state.friendDisplays}
+				<h1 align="center" >close friends</h1>
+				{this.state.closeFriendDisplays}
+				<h1 align="center" >pending friends</h1>
+				{this.state.pendingFriendDisplays}
 
-		</div>
-		);
-	}
+				</div>
+				);
+			}
+		}
 }
 const mapStateToProps = state => {
     let errors = [];
