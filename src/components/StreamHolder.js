@@ -65,6 +65,7 @@ class StreamHolder extends React.Component {
         this.addOcean = this.addOcean.bind(this);
         this.addarchive = this.addarchive.bind(this);
         this.addFriends = this.addFriends.bind(this);
+        this.addSettings = this.addSettings.bind(this);
     }
 
     handleAdd(i) {}

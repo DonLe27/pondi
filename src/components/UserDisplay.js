@@ -2,8 +2,6 @@ import React from 'react';
 import '../styles/pendingfrienddisplay.css';
 import '../styles/archive.css';
 import { Button } from "react-bootstrap";
-import IconButton from "@material-ui/core/IconButton";
-import MoreOptions from './MoreOptions.js'
 class UserDisplay extends React.Component {
 
 	constructor(props)
