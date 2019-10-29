@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/pendingfrienddisplay.css';
 import { Button } from "react-bootstrap";
+import UserItem from './UserItem';
 class UserDisplay extends React.Component {
 
 	constructor(props)
@@ -13,7 +14,7 @@ class UserDisplay extends React.Component {
         if (this.props.userType == "friend"){
             return(
                 <div className ="friend">
-                <Button className="prompt_title" onClick={(i) => {this.props.deleteFriend(this.props.username)}}>{this.props.username}</Button>
+                <UserItem avatar={this.props.avatar} funcArr={[this.props.deleteFriend(this.props.username)]} funcName={["delete"]} username={this.props.username}/>
                 </div>
             );
         }
@@ -41,7 +42,8 @@ class UserDisplay extends React.Component {
             )
         }
 
-	}
+    }
+    
 }
 	
 

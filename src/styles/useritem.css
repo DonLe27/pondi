@@ -1,0 +1,29 @@
+/*--------------------------------------*\
+	    USER_ITEM
+\*--------------------------------------*/
+
+@import url('https://fonts.googleapis.com/css?family=Barlow');
+
+.avatar {
+    margin-top: 0vh;
+    margin-bottom: 3vh;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    width: 8vw;
+    border-radius: 50%;
+    border: .8vw solid #98AABB;
+    border-style: double;
+    height: 8vw;
+    float: left;
+    margin: 0 2vw 2vw 5vw;
+}
+
+.avatar img {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    width: calc(100%);
+    height: calc(100%);
+    border-radius: 50%;
+}
