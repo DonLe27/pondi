@@ -36,7 +36,7 @@ class Dropdown extends React.Component{
             return (
                 <div>
                     <div className="dropdown-header" onClick={this.toggleList}>
-                        . . .
+                        
                     </div>
                     <ul className="dropdown-content" >{dropdownselections}</ul>        
                 </div>
@@ -46,7 +46,7 @@ class Dropdown extends React.Component{
             return (
                 <div>
                     <div className="dropdown-header" onClick={this.toggleList}>
-                        . . .
+                        
                     </div>
                 </div>
             )
