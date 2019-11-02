@@ -172,7 +172,7 @@ class Prompt extends React.Component {
       <div>
         <div className="Prompt">
           
-          <ChoosePrompt prompt={this.state.prompt} />
+          <ChoosePrompt prompts={this.props.prompts} />
         </div>
         
         <input
