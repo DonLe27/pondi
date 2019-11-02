@@ -8,17 +8,21 @@ class ChoosePrompt extends React.Component {
 
 	constructor(props){
 		super(props);
-
+		this.prompts = []
+		for(var i = 0; i < this.props.prompts.length; i++){
+			this.prompts.push(<option value="dog">{this.props.prompts[i].question}</option>)
+		}
 	}
 
 	
 
 	render() {
 		return (
-		
-		<div>
-            <h className="title">{this.props.prompt}</h>
-		</div>
+			<div>
+				<select id="prompt-select">
+					{this.prompts}
+				</select>
+			</div>
 		);
 	}
 } 
