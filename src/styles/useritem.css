@@ -4,6 +4,13 @@
 
 @import url('https://fonts.googleapis.com/css?family=Barlow');
 
+.username {
+    width: 100%;
+    margin-bottom: 2vw;
+    font-family: Barlow, sans-serif;
+    font-size: 2.0vw;
+}
+
 .avatar {
     margin-top: 0vh;
     margin-bottom: 3vh;
@@ -26,4 +33,8 @@
     width: calc(100%);
     height: calc(100%);
     border-radius: 50%;
+}
+
+.dropdown {
+    float: right;
 }

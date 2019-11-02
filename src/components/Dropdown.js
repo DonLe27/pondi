@@ -35,19 +35,19 @@ class Dropdown extends React.Component{
         if (this.state.listOpen) {
             return (
                 <div>
-                    <button className="dropdown-header" onClick={this.toggleList}>
-                        dropdown!
-                    </button>
-                    <ul>{dropdownselections}</ul>        
+                    <div className="dropdown-header" onClick={this.toggleList}>
+                        . . .
+                    </div>
+                    <ul className="dropdown-content" >{dropdownselections}</ul>        
                 </div>
             );
         }
         else {
             return (
                 <div>
-                    <button className="dropdown-header" onClick={this.toggleList}>
-                        dropdown!
-                    </button>
+                    <div className="dropdown-header" onClick={this.toggleList}>
+                        . . .
+                    </div>
                 </div>
             )
         }

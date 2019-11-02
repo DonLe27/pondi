@@ -6,9 +6,10 @@ import '../styles/useritem.css';
 function UserItem(props){
     return(
         <div>
-            <ProfPic classType="avatar" avatar={this.avatar}/>
-            <h1>{this.username}</h1>
-            <Dropdown buttonTitles={this.funcName} buttonFunctions={this.funcArr}/>
+            <ProfPic classType="avatar" avatar={props.avatar}/>
+            <h1 className="username">{props.username}</h1>
+            <Dropdown className="dropdown" buttonTitles={props.funcName} buttonFunctions={props.funcArr}/>
+            <hr/>
         </div>
     );
 }

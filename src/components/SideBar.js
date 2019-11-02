@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import "../styles/transitions.css";
 import "../styles/sidebar.css";
+import SidebarButtons from "./SidebarButtons.js"
 import vec1 from "../styles/vectors/vector1.png";
 import vec2 from "../styles/vectors/vector2.png";
+
 
 import ProfPic from "./ProfPic.js";
 
@@ -37,12 +39,9 @@ class SideBar extends React.Component {
 
   render() {
 
-    var addStream = this.props.addStream;
-    var addOcean = this.props.addOcean;
-    var addarchive = this.props.addarchive;
-    var addPrompt = this.props.addPrompt;
     return (
       <div className="SideBar">
+        <SidebarButtons addSettings={this.props.addSettings} addFriends={this.props.addFriends}/>
         <ProfPic classType="avatar" avatar={this.props.avatar} />
 
         <Username username={this.props.username} />
@@ -83,24 +82,7 @@ class SideBar extends React.Component {
         >
           prompt
         </Button>
-        <Button
-          className="Button"
-          block
-          bsSize="large"
-        //  addarchive={this.props.addPrompt}
-          onClick={i => this.props.addFriends("somevar")}
-        >
-          friends
-        </Button>
-        <Button
-          className="Button"
-          block
-          bsSize="large"
-        //  addarchive={this.props.addPrompt}
-          onClick={i => this.props.addSettings("somevar")}
-        >
-          settings
-        </Button>
+
 
         <img className="sidebar-vector1" src={vec1} alt="vector1" />
         <img className="sidebar-vector2" src={vec2} alt="vector1" />
