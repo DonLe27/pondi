@@ -34,7 +34,6 @@ class Prompt extends React.Component {
       }
 	}
   promptChangeHandler = (newPrompt) => {
-    console.log(newPrompt);
     var exist = false;
     let postIndex = -1;
     var i;
@@ -158,21 +157,12 @@ class Prompt extends React.Component {
 
   render() {
     //Make buttons for changing prompts
-    const buttonList = [];
     var i;
-    for(i = 0; i<this.props.prompts.length; i++)
-    {
-
-      let item = this.props.prompts[i].question
-      let index = i + 1
-      buttonList.push(<Button onClick={(i)=> {this.promptChangeHandler(index)}}key={i} className="category">{item}</Button>)
-
-    }
     return (
       <div>
-        <div className="Prompt">
-          
-          <ChoosePrompt prompts={this.props.prompts} />
+        <div className="choice-container">
+  
+          <ChoosePrompt prompts={this.props.prompts} changePrompt={this.promptChangeHandler.bind(this)} />
         </div>
         
         <input
@@ -202,7 +192,7 @@ class Prompt extends React.Component {
           <label for="file" className="Upload">
             <img src="https://images.vexels.com/media/users/3/153834/isolated/preview/d0679e2704e98a8041508fba4c332d49-paper-clip-stroke-icon-by-vexels.png" />
           </label>
-          <input
+          <inputchangePromptchangePrompt
             type="image"
             className="Visibility"
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Globe_icon.svg/768px-Globe_icon.svg.png"
@@ -213,9 +203,6 @@ class Prompt extends React.Component {
         {this.state.privacy == "f" && <Button onClick={()=> {this.privacyHandler()}}>Friends</Button>}
         {this.state.privacy == "o" && <Button onClick={()=> {this.privacyHandler()}}>Ocean</Button>}
         </div>
-          <div>
-            {buttonList}
-          </div>
         </div>
         
         <Button className="Post" onClick={this.uploadHandler}>

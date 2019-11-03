@@ -6,11 +6,23 @@
     left: 37vw;
     top: 5vh;
     right: 15vw;
-    width: 50vw;
+    width: 30vw;
     height: 7.5vh;
     font-size: 3vh;
     font-family: Barlow;
     overflow: auto;
+  }
+
+  .choice-container {
+    position: absolute;
+    left: 37vw;
+    top: 5vh;
+    right: 15vw;
+    width: 30vw;
+    height: 7.5vh;
+    font-size: 3vh;
+    font-family: Barlow;
+    overflow-y: visible;
   }
   
   .Container {
