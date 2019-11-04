@@ -1,0 +1,61 @@
+/*--------------------------------------*\
+	    USER_ITEM
+\*--------------------------------------*/
+
+@import url('https://fonts.googleapis.com/css?family=Barlow');
+
+.username {
+    margin: 0 5vw 0 5vw;
+}
+
+.username 
+
+.useritem hr {
+    width: 100%;
+    border-top: 1px solid rgba(200, 200, 200, .4);
+
+    height: 0px;
+    margin-bottom: 3vw;
+}
+
+.username {
+    width: 100%;
+    margin-bottom: 2vw;
+    font-family: Barlow, sans-serif;
+    font-size: 2.0vw;
+    line-height: 100px;
+
+}
+
+.avatar {
+    margin-top: 0vh;
+    margin-bottom: 3vh;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    width: 8vw;
+    border-radius: 50%;
+    border: .8vw solid #98AABB;
+    border-style: double;
+    height: 8vw;
+    float: left;
+    margin: 0 2vw 2vw 5vw;
+}
+
+.avatar img {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    width: calc(100%);
+    height: calc(100%);
+    border-radius: 50%;
+}
+
+.useritem .dropdown {
+    position: absolute;
+    right: 0;
+    width: 100%;
+    margin-bottom: 2vw;
+    font-size: 10.0vw;
+    line-height: 100px;
+}
