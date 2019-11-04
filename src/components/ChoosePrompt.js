@@ -34,6 +34,11 @@ class ChoosePrompt extends React.Component {
 			);
 		  };
 		const customStyles = {
+			option: (provided, state) => ({
+				...provided,
+				color: 'black',
+				backgroundColor: state.isSelected ? '#F0F8FF' :  state.isFocused ? '#F0F8FF' : 'white',
+			  }),
 			dropdownIndicator: defaultStyles => ({
 				...defaultStyles,
 				'& svg': { marginBottom: "0px", marginTop: "20px" }
@@ -66,6 +71,16 @@ class ChoosePrompt extends React.Component {
 			defaultValue={this.state.selectedOption}
 			options={this.prompts}
 			onChange={this.handleChange}
+			maxMenuHeight="45vh"
+			isSearchable={false}
+			theme={theme => ({
+				...theme,
+				borderRadius: '12px',
+				colors: {
+				  ...theme.colors,
+				primary: 'gray'
+				},
+			  })}
 		  />
 		  </div>
 		);
