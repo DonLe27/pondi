@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/pendingfrienddisplay.css';
 import '../styles/archive.css';
 import { Button } from "react-bootstrap";
+import UserItem from './UserItem';
 class UserDisplay extends React.Component {
 
 	constructor(props)
@@ -13,15 +14,15 @@ class UserDisplay extends React.Component {
 	render(){
         if (this.props.userType == "friend"){
             return(
-                <div className ="Archive">
-                <Button className="prompt_title" onClick={(i) => {this.props.deleteFriend(this.props.username)}}>{this.props.username}</Button>
+                <div className ="friend">
+                <UserItem className="prompt_title" avatar={this.props.avatar} funcArr={[this.props.deleteFriend(this.props.username)]} funcName={["delete"]} username={this.props.username}/>
                 </div>
             );
         }
         if (this.props.userType == "closeFriend"){
             return(
                 <div className ="Archive">
-                <Button className="prompt_title" onClick={(i) => {this.props.deleteFriend(this.props.username)}}>{this.props.username}</Button>
+                <UserItem className="prompt_title" avatar={this.props.avatar} funcArr={[this.props.deleteFriend(this.props.username)]} funcName={["delete"]} username={this.props.username}/>
                 </div>
             );
         }
@@ -29,7 +30,7 @@ class UserDisplay extends React.Component {
         {
             return(
                 <div className ="Archive">
-                <Button className="prompt_title" onClick={(i) => {this.props.acceptFriend(this.props.username)}}>{this.props.username}</Button>
+                <UserItem className="prompt_title" avatar={this.props.avatar} funcArr={[this.props.acceptFriend(this.props.username)]} funcName={["delete"]} username={this.props.username}/>
                 </div>
             );
         }
@@ -38,12 +39,13 @@ class UserDisplay extends React.Component {
             return(
 
                 <div className ="Archive">
-                <Button className="prompt_title" onClick={(i) => {this.props.requestFriend(this.props.username)}}>{this.props.username}</Button>
+                <UserItem avatar={this.props.avatar} funcArr={[this.props.requestFriend(this.props.username)]} funcName={["send friend request"]} username={this.props.username}/>
                 </div>
             )
         }
 
-	}
+    }
+    
 }
 	
 
