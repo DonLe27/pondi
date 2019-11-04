@@ -60,7 +60,7 @@ class ChoosePrompt extends React.Component {
 			}),
 			control: (provided, state) => ({
 				...provided,
-			  borderWidth: '0px',
+			  borderWidth: '1px',
 			  height: '7.5vh'
 			})}
 		return (
