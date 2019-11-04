@@ -1,4 +1,10 @@
 
 .custom-select{
     width: 75vh;
+    border-width: 0px;
+}
+
+.Select-arrow{
+    margin-top: 0px;
+    margin-bottom: 16px;
 }

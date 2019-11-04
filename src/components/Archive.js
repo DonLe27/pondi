@@ -64,7 +64,7 @@ class Archive extends React.Component{
 		
 		<div className="Archive">
 		<HeaderBar header="Pond"/>
-		<Categories />
+	
 		{this.prompts}
 		</div>
 		);

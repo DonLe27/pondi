@@ -33,7 +33,7 @@ class Stream extends React.Component{
 		
 		<div className="Stream">
 		<HeaderBar header="Stream"/>
-		<Categories />
+	
 		{this.prompts}
 		</div>
 		);

@@ -23,17 +23,51 @@ class ChoosePrompt extends React.Component {
 	handleChange = (newOption) => {
 		this.setState({ selectedOption: newOption });
 		this.props.changePrompt(newOption["value"])
-		console.log(`Option selected:`, newOption);
 	  }
-	  
+	  arrowRenderer = () => {
+		return <div></div>
+	  }
 	render() {
+		const DropdownIndicator = props => {
+			return (
+				<div></div>  
+			);
+		  };
+		const customStyles = {
+			dropdownIndicator: defaultStyles => ({
+				...defaultStyles,
+				'& svg': { marginBottom: "0px", marginTop: "20px" }
+			  }),
+			indicatorsContainer: (provided, state) => ({
+				...provided,
+				visibility: "visible",
+				height: "5vh",
+				width:"5vh"
+			}),
+			indicatorSeparator: (provided,state) => ({
+				...provided,
+				height: "4vh",
+				marginBottom: "0px",
+    			marginTop: "16px"
+			}),			
+			singleValue: (provided,state) => ({
+				whiteSpace: "normal"
+			}),
+			control: (provided, state) => ({
+				...provided,
+			  borderWidth: '0px',
+			  height: '7.5vh'
+			})}
 		return (
+			<div>	
 			<Select
+			styles={customStyles}
 			className="custom-select"
 			defaultValue={this.state.selectedOption}
 			options={this.prompts}
 			onChange={this.handleChange}
 		  />
+		  </div>
 		);
 	}
 } 

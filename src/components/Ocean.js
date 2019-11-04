@@ -39,7 +39,7 @@ class Ocean extends React.Component {
 		
 		<div className="Archive">
 		<HeaderBar header="Ocean"/>
-		<Categories />
+	
 		{this.prompts}
 		</div>
 		);

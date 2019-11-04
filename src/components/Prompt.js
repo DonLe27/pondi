@@ -32,8 +32,9 @@ class Prompt extends React.Component {
         })
         console.log("Rendering archive again")
       }
-	}
+  }
   promptChangeHandler = (newPrompt) => {
+    //newPrompt holds id of prompt which is +1 the index value
     var exist = false;
     let postIndex = -1;
     var i;
