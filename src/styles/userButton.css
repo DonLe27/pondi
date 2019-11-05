@@ -1,0 +1,13 @@
+.button-header {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    right: 2%;
+    font-size: 3vh;
+    transform: translate(0%, -50%);
+}
+
+.dropdown-content {
+    position: absolute;
+    right: 450px;
+}

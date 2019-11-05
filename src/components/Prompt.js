@@ -166,16 +166,7 @@ class Prompt extends React.Component {
           <ChoosePrompt prompts={this.props.prompts} changePrompt={this.promptChangeHandler.bind(this)} />
         </div>
         
-        <input
-          type="image"
-          className="Refresh"
-          src="http://www.stickpng.com/assets/images/585e4831cb11b227491c338e.png"
-        />
-        <input
-          type="image"
-          className="Edit"
-          src="https://www.pngkey.com/png/full/0-5198_edit-pencil-png-pencil-edit-logo.png"
-        />
+
         <div className="Container">
           <textarea
             type="text"

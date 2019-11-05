@@ -1,0 +1,45 @@
+/*--------------------------------------*\
+	    UserDisplay-PAGE : medium size;
+\*--------------------------------------*/
+
+
+.SearchUser {
+	box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+	width: calc(65vw);
+	margin-right: 5vw;
+	float: right;
+	height: calc(100vh);
+	/*border: solid 5px black;*/
+
+}
+.searchCenter {
+	margin: 0;
+	position: "relative";
+	top: "40%";
+	transform: "translateY(-50%)";
+	width: "80%";
+  }
+.userCenter {
+	margin: 0;
+	position: "relative";
+	top: "40%";
+	transform: "translateY(-50%)";
+	width: "80%"
+  }
+
+@media only screen and (min-width: 1200px) {
+	.SearchUser {
+		width: calc(100vw - 38vh);
+		margin: 0;
+	}
+}
+
+@media only screen and (min-width: 0px) and (max-width: 599px) {
+    .SearchUser {
+    	width: calc(100vw);
+		margin-top: 15vh;
+    }
+
+}

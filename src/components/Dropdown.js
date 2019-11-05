@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/dropdown.css';
- 
+import {  Button } from "react-bootstrap";
 // Dropdown component accepts an array of functions and an array of names as props
 
 class Dropdown extends React.Component{
@@ -15,7 +15,7 @@ class Dropdown extends React.Component{
  
         this.handleClickOutside = this.handleClickOutside.bind(this);
         this.toggleList = this.toggleList.bind(this);
-        
+        console.log(this.buttonFunctions)
     }
     toggleList(){
         this.setState( prevState => ({
@@ -44,11 +44,13 @@ class Dropdown extends React.Component{
         }
         else {
             return (
-                <div>
-                    <div className="dropdown-header" onClick={this.toggleList}>
-                        
+                    <div>
+                        <Button className="dropdown-header" onClick={this.toggleList}>
+                            ...
+                        </Button>
                     </div>
-                </div>
+
+
             )
         }
     }

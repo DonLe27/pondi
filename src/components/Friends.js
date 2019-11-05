@@ -3,6 +3,7 @@ import UserDisplay from './UserDisplay'
 import SearchUser from './SearchUser'
 import {auth}  from "../actions";
 import { connect } from "react-redux";
+import "../styles/searchUser.css"
 class FriendPage extends React.Component{
 	constructor(props){
 		super(props);
@@ -83,11 +84,12 @@ class FriendPage extends React.Component{
 		this.props.sendRequest(friendname)
 	}
 	searchUserHandler = (friendname) => {
-		
+		console.log("Searching for: " + friendname)
 		this.props.searchUser(friendname).then((result) => {
 			if (result["status"] < 500){
 				console.log(result["data"]["friendObject"]["username"])
 				let searchedUsername = result["data"]["friendObject"]["username"]
+				console.log("Searched and found:" + searchedUsername)
 				var searchType = ""
 				if (this.isFriend(searchedUsername)){
 					searchType = "friend"
@@ -161,13 +163,34 @@ class FriendPage extends React.Component{
 	}
 	
 	render() {
+		const searchCenter = {
+			margin: 0,
+			position: "relative",
+			top: "30%",
+			msTransform: "translateY(-50%)",
+			transform: "translateY(-50%)",
+			width: "80%"
+		  }
+		  const userCenter = {
+			margin: 0,
+			position: "relative",
+			top: "40%",
+			msTransform: "translateY(-50%)",
+			transform: "translateY(-50%)",
+			width: "60%",
+			left:"20%"
+		  }
 		console.log(this.isFriend(this.state.searchedUser))
 		console.log(this.state.searching)
 		if (this.state.searching){
 			return (
-			<div>
-				<SearchUser searchUser={this.searchUserHandler.bind(this)}/>
-				{ this.state.searchedUser && <UserDisplay userType={this.state.searchedUserType} key={this.state.searchedUser + "s"} acceptFriend={this.acceptFriendHandler.bind(this)} deleteFriend={this.deleteFriendHandler.bind(this)} getFriendProfile={this.props.getFriendProfile} requestFriend={this.requestFriendHandler.bind(this)} username={this.state.searchedUser} /> }
+			<div className="SearchUser">
+				<div style={searchCenter}>
+					<SearchUser searchUser={this.searchUserHandler.bind(this)}/>
+				</div>
+				<div style={userCenter}>
+						{ this.state.searchedUser && <UserDisplay userType={this.state.searchedUserType} key={this.state.searchedUser + "s"} acceptFriend={this.acceptFriendHandler.bind(this)} deleteFriend={this.deleteFriendHandler.bind(this)} getFriendProfile={this.props.getFriendProfile} requestFriend={this.requestFriendHandler.bind(this)} username={this.state.searchedUser} /> }
+				</div>
 			</div>
 			)
 		}
