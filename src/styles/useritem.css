@@ -18,10 +18,10 @@
 .user {
     margin: 0 4vw 0 4vw;
     background: #FFFFFF;
-    border: 2px solid #D7E2EA;
+    border: 3px solid #D7E2EA;
     box-sizing: border-box;
     border-radius: 17px;
-    height: 10vh;
+    height: 12vh;
     width: 45vw;
 }
 
