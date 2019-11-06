@@ -1,5 +1,4 @@
 import React from 'react';
-import Dropdown from './Dropdown';
 import UserButton from './UserButton'
 import ProfPic from './ProfPic';
 import '../styles/useritem.css';
@@ -7,9 +6,9 @@ import { Container, Row, Col } from 'reactstrap';
 
 function UserItem(props){
     return(
-        <div >
+        <div>
             
-             <div className="user">
+           
              <ProfPic classType="avatar-user" avatar={props.avatar}/>
             <Container>
                 <Row>
@@ -21,7 +20,7 @@ function UserItem(props){
                 </Col>
                 </Row>
             </Container>
-            </div>
+            
         </div>
     );
 }

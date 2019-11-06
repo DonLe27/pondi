@@ -14,6 +14,13 @@
 	/*border: solid 5px black;*/
 
 }
+.search-vector{
+	position: absolute;
+	bottom:0px;
+	right: 0px;
+	width:78vw;
+	height:45vh;
+}
 .searchCenter {
 	margin: 0;
 	position: "relative";

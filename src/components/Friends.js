@@ -3,7 +3,9 @@ import UserDisplay from './UserDisplay'
 import SearchUser from './SearchUser'
 import {auth}  from "../actions";
 import { connect } from "react-redux";
-import "../styles/searchUser.css"
+import "../styles/searchPage.css"
+import '../styles/userDisplay.css';
+import vec1 from "../styles/vectors/vector2.1.png";
 class FriendPage extends React.Component{
 	constructor(props){
 		super(props);
@@ -164,12 +166,12 @@ class FriendPage extends React.Component{
 	
 	render() {
 		const searchCenter = {
-			margin: 0,
-			position: "relative",
-			top: "30%",
-			msTransform: "translateY(-50%)",
-			transform: "translateY(-50%)",
-			width: "80%"
+		//	margin: 0,
+		//	position: "relative",
+		//	top: "30%",
+		//	msTransform: "translateY(-50%)",
+		//	transform: "translateY(-50%)",
+			position:"relative"
 		  }
 		  const userCenter = {
 			margin: 0,
@@ -180,17 +182,19 @@ class FriendPage extends React.Component{
 			width: "60%",
 			left:"20%"
 		  }
+
 		console.log(this.isFriend(this.state.searchedUser))
 		console.log(this.state.searching)
 		if (this.state.searching){
 			return (
 			<div className="SearchUser">
-				<div style={searchCenter}>
+				<div className="searchCenter">
 					<SearchUser searchUser={this.searchUserHandler.bind(this)}/>
 				</div>
-				<div style={userCenter}>
+				<div >
 						{ this.state.searchedUser && <UserDisplay userType={this.state.searchedUserType} key={this.state.searchedUser + "s"} acceptFriend={this.acceptFriendHandler.bind(this)} deleteFriend={this.deleteFriendHandler.bind(this)} getFriendProfile={this.props.getFriendProfile} requestFriend={this.requestFriendHandler.bind(this)} username={this.state.searchedUser} /> }
 				</div>
+				<img className="search-vector" src={vec1} alt="vector1" />
 			</div>
 			)
 		}

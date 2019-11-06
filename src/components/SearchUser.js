@@ -1,7 +1,7 @@
 import React from 'react';
 
 import '../styles/searchuser.css';
-import { Button} from "react-bootstrap"
+import searchIcon from "../Images/search.png";
 
 class SearchUser extends React.Component {
 
@@ -13,20 +13,29 @@ class SearchUser extends React.Component {
         }
 	}
     textInputHandler = event => {
-        this.setState({friendname: event.target.value})
-        console.log(this.state.friendname)
+        const isEnterPressed = event.which === 13 || event.keyCode === 13;
+        if (isEnterPressed) {
+          console.log("Enter pressed!")
+          this.props.searchUser(this.state.friendname)
+        }
+        else{
+            console.log(event.target.value)
+            this.setState({friendname: event.target.value})
+        }
+
+        
     }
 	render(){
 		return(
-            <div className="searchuser">
-                <h3>Search Form</h3>
-                <textarea className="textarea"
+            <div className="searchuser-container ">
+                <input className="searcharea"
                 value={this.state.friendname}
                 type="text"
                 onChange={this.textInputHandler}
-                placeholder="Search for users here"
+                onKeyPress={this.textInputHandler}
+                placeholder="search user"
                 />
-                <Button onClick={(i) => {this.props.searchUser(this.state.friendname)}}>Search</Button>
+                <img src={searchIcon} className="search-img" alt="search icon" ></img>
             </div>
             
 		);
