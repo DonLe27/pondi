@@ -1,6 +1,7 @@
 import React from 'react';
 import UserDisplay from './UserDisplay'
 import SearchUser from './SearchUser'
+import UserList from './UserList'
 import {auth}  from "../actions";
 import { connect } from "react-redux";
 import "../styles/searchPage.css"
@@ -139,13 +140,12 @@ class FriendPage extends React.Component{
 			for(var i = 0; i < newProps.pendingFriends.length; i++)
 			{
 				newPendingFriendDisplays.push(
-					<UserDisplay key={newProps.pendingFriends[i]["username"] + ' c'} userType="friend" acceptFriend={this.acceptFriendHandler.bind(this)} username={newProps.pendingFriends[i]["username"]} avatar={newProps.pendingFriends[i]["avatar"]}/>
+					<UserDisplay key={newProps.pendingFriends[i]["username"] + ' c'} userType="pendingFriend" acceptFriend={this.acceptFriendHandler.bind(this)} username={newProps.pendingFriends[i]["username"]} avatar={newProps.pendingFriends[i]["avatar"]}/>
 				)
 			}
 			this.setState({
 				pendingFriendDisplays: newPendingFriendDisplays
 			})
-			console.log("RECEIVED NEW PENDING FRIENDS")
 			console.log(newProps.pendingFriends)
 		}	
 		if (newProps.closeFriends != this.props.closeFriends){
@@ -165,6 +165,7 @@ class FriendPage extends React.Component{
 	}
 	
 	render() {
+		console.log("Rendering Friends.js")
 		const searchCenter = {
 		//	margin: 0,
 		//	position: "relative",
@@ -177,21 +178,18 @@ class FriendPage extends React.Component{
 			margin: 0,
 			position: "relative",
 			top: "40%",
-			msTransform: "translateY(-50%)",
-			transform: "translateY(-50%)",
-			width: "60%",
-			left:"20%"
+			position: "absolute",
+			top: "35%",
+			left: "38%",
 		  }
 
-		console.log(this.isFriend(this.state.searchedUser))
-		console.log(this.state.searching)
 		if (this.state.searching){
 			return (
-			<div className="SearchUser">
+			<div className="FriendContainer">
 				<div className="searchCenter">
 					<SearchUser searchUser={this.searchUserHandler.bind(this)}/>
 				</div>
-				<div >
+				<div style={userCenter}>
 						{ this.state.searchedUser && <UserDisplay userType={this.state.searchedUserType} key={this.state.searchedUser + "s"} acceptFriend={this.acceptFriendHandler.bind(this)} deleteFriend={this.deleteFriendHandler.bind(this)} getFriendProfile={this.props.getFriendProfile} requestFriend={this.requestFriendHandler.bind(this)} username={this.state.searchedUser} /> }
 				</div>
 				<img className="search-vector" src={vec1} alt="vector1" />
@@ -200,13 +198,8 @@ class FriendPage extends React.Component{
 		}
 		else{
 			return (
-				<div >
-					<h1 align="center" >friends</h1>
-				{this.state.friendDisplays}
-				<h1 align="center" >close friends</h1>
-				{this.state.closeFriendDisplays}
-				<h1 align="center" >pending friends</h1>
-				{this.state.pendingFriendDisplays}
+				<div className="FriendContainer">
+					<UserList friendDisplays={this.state.friendDisplays} closeFriendDisplays={this.state.closeFriendDisplays} pendingFriendDisplays={this.state.pendingFriendDisplays}></UserList>
 
 				</div>
 				);
