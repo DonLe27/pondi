@@ -180,7 +180,7 @@ class FriendPage extends React.Component{
 			top: "40%",
 			position: "absolute",
 			top: "35%",
-			left: "38%",
+			left: "37%",
 		  }
 
 		if (this.state.searching){

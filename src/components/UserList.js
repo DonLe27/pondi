@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../styles/userList.css'
 class UserList extends React.Component{
     constructor(props){
         super(props)
@@ -53,11 +53,13 @@ class UserList extends React.Component{
         console.log("Rendering UserList.js")
         console.log(this.state.displayList)
         return(
-            <div>
-                <div>
-                    <button onClick={()=>{this.displayFriends()}}>friends</button>
-                    <button onClick={()=>{this.displayCloseFriends()}}>close friends</button>
-                    <button onClick={()=>{this.displayPendingFriends()}}>pending friends</button>
+            <div className="list-container">
+                <h1>Connections</h1>
+                <hr/>
+                <div className="buttonsContainer">
+                    <button className={this.state.userType === 'f' ? "list-clickedButton" :"list-unclickedButton"} onClick={()=>{this.displayFriends()}}>friends</button>
+                    <button className={this.state.userType === 'c' ? "list-clickedButton" :"list-unclickedButton"} onClick={()=>{this.displayCloseFriends()}}>close friends</button>
+                    <button className={this.state.userType === 'p' ? "list-clickedButton" :"list-unclickedButton"} onClick={()=>{this.displayPendingFriends()}}>pending friends</button>
                 </div>
                 {this.state.displayList}
             </div>

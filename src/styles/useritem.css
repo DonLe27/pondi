@@ -8,10 +8,10 @@
 
 
 .useritem {
-    margin: 0 5vw 0 5vw;
+    margin: 0 5vw 0 4vw;
     font-family: Barlow, sans-serif;
     font-size: 1.75vw;
-    width: 37vw;
+    width: 44vw;
     float: left;
     color: #b2b2b2;
     font-family: Barlow, sans-serif;
@@ -19,6 +19,7 @@
     border-bottom-style: solid;
     border-width: 2px;
     border-radius: 12px;
+    height: 12vh;
 }
 
 .userButton{
@@ -31,7 +32,8 @@
     float: right;
     top: 50%;
     right: 3%;
-    transform: translateY(-50%);
+    transform: translateY(-200%);
+    margin-right: 4%;
 }
 .username-user{
     color: #b2b2b2;
@@ -43,14 +45,15 @@
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    width: 5vw;
+    width: 4vw;
     border-radius: 50%;
     border: 0.5vw solid #98AABB;
     border-style: double;
-    height: 5vw;
+    height: 4vw;
     float: left;
     margin-left: 3%;
-    margin-top: 3%;
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
 
 .avatar-user img {
