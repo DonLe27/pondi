@@ -10,16 +10,30 @@ class ChoosePrompt extends React.Component {
 		this.state = {
 			selectedOption: {value: promptsLength, label: this.props.prompts[this.props.prompts.length-1].question}
 		}
+		//console.log("In chose prompts")
+		//console.log(this.props.prompts)
 		this.prompts = []
 		for(var i = promptsLength-1; i > -1; i--){
 			var question = this.props.prompts[i].question
+			console.log(this.props.prompts[i].category)
 			var id = this.props.prompts[i].id
 			this.prompts.push({value: id, label: question})
 		}
 	}
 
+	sortIntoCategories = (chosenCategories) => {
+		var questionsThatSatisfyChosenCategories = [];
+		for(var i = promptsLength - 1; i > -1; i--){
+			var question = this.props.prompts[i].question
+			for (var j = chosenCategories.length - 1; j > -1; j--){
+				if (question.category == chosenCategories[j]){
+					questionsThatSatisfyChosenCategories.push(question)
+				}
+			}
+		}
+		return <div></div>
+	}
 
-	
 	handleChange = (newOption) => {
 		this.setState({ selectedOption: newOption });
 		this.props.changePrompt(newOption["value"])
