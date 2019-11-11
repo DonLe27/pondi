@@ -1,28 +1,17 @@
 import React from 'react';
-import Dropdown from './Dropdown';
-import UserButton from './UserButton'
 import ProfPic from './ProfPic';
 import '../styles/useritem.css';
-import { Container, Row, Col } from 'reactstrap';
-
+import {  Button } from "react-bootstrap";
 function UserItem(props){
     return(
-        <div >
-            
-             <div className="user">
-             <ProfPic classType="avatar-user" avatar={props.avatar}/>
-            <Container>
-                <Row>
-                <Col>
-                    <h1 className="username-user">{props.username}</h1>
-                </Col>
-                <Col>
-                    <UserButton className="user-dropdown" username={props.username} buttonFunctions={props.funcArr} buttonTitles={props.funcName}/>
-                </Col>
-                </Row>
-            </Container>
+            <div className="useritem">
+            <ProfPic classType="avatar-user" avatar={props.avatar}/>
+            <p className="username-user">{props.username}</p>
+            <button className="userButton" onClick={()=>{props.funcArr[0](props.username)}}>
+                            {props.funcName[0]}
+            </button>
             </div>
-        </div>
+
     );
 }
 

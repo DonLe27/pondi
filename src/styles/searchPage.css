@@ -3,7 +3,7 @@
 \*--------------------------------------*/
 
 
-.SearchUser {
+.FriendContainer {
 	box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -13,6 +13,13 @@
 	height: calc(100vh);
 	/*border: solid 5px black;*/
 
+}
+.search-vector{
+	position: absolute;
+	bottom:0px;
+	right: 0px;
+	width:78vw;
+	height:45vh;
 }
 .searchCenter {
 	margin: 0;
@@ -34,10 +41,28 @@
 		width: calc(100vw - 38vh);
 		margin: 0;
 	}
+	.FriendContainer {
+		width: calc(100vw - 38vh);
+		margin: 0;
+	}
+}
+
+@media only screen and (min-width: 1200px) {
+	.search-vector{
+		position: absolute;
+		bottom:0px;
+		right: 0px;
+		width:87vw;
+		height:45vh;
+	}
 }
 
 @media only screen and (min-width: 0px) and (max-width: 599px) {
     .SearchUser {
+    	width: calc(100vw);
+		margin-top: 15vh;
+	}
+	.FriendContainer {
     	width: calc(100vw);
 		margin-top: 15vh;
     }

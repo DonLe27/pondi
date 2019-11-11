@@ -154,8 +154,18 @@ class Prompt extends React.Component {
       });
     }
   }
-
-
+//code for file submission
+/*          <input
+            type="file"
+            id="file"git 
+            className="inputfile"
+            accept="image/*"
+            onChange={this.fileChangedHandler}
+          />
+          <label for="file" className="Upload">
+            <img src="https://images.vexels.com/media/users/3/153834/isolated/preview/d0679e2704e98a8041508fba4c332d49-paper-clip-stroke-icon-by-vexels.png" />
+          </label>
+          */
   render() {
     //Make buttons for changing prompts
     var i;
@@ -174,32 +184,24 @@ class Prompt extends React.Component {
             onChange={this.textInputHandler}
             placeholder="Type your response here"
           />
-          <input
-            type="file"
-            id="file"git 
-            className="inputfile"
-            accept="image/*"
-            onChange={this.fileChangedHandler}
-          />
-          <label for="file" className="Upload">
-            <img src="https://images.vexels.com/media/users/3/153834/isolated/preview/d0679e2704e98a8041508fba4c332d49-paper-clip-stroke-icon-by-vexels.png" />
-          </label>
+
           <inputchangePromptchangePrompt
             type="image"
             className="Visibility"
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Globe_icon.svg/768px-Globe_icon.svg.png"
           />
-        <div>
-        {this.state.privacy == "p" && <Button onClick={()=> {this.privacyHandler()}}>Private</Button>}
-        {this.state.privacy == "c" && <Button onClick={()=> {this.privacyHandler()}}>Close Friends</Button>}
-        {this.state.privacy == "f" && <Button onClick={()=> {this.privacyHandler()}}>Friends</Button>}
-        {this.state.privacy == "o" && <Button onClick={()=> {this.privacyHandler()}}>Ocean</Button>}
+        <div className="privacy-container">
+        {this.state.privacy == "p" && <button className="privacy-button" onClick={()=> {this.privacyHandler()}}>Private</button>}
+        {this.state.privacy == "c" && <button className="privacy-button" onClick={()=> {this.privacyHandler()}}>Close Friends</button>}
+        {this.state.privacy == "f" && <button className="privacy-button" onClick={()=> {this.privacyHandler()}}>Friends</button>}
+        {this.state.privacy == "o" && <button className="privacy-button" onClick={()=> {this.privacyHandler()}}>Ocean</button>}
         </div>
         </div>
-        
-        <Button className="Post" onClick={this.uploadHandler}>
-          Save
-        </Button>
+        <div className="post-container">
+          <button className="Post" onClick={this.uploadHandler}>
+            Save
+          </button>
+        </div>
       </div>
     );
   }

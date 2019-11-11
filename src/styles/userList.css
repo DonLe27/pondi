@@ -1,0 +1,51 @@
+
+.buttonsContainer{
+    position: relative;
+    left: 7%;
+}
+
+.buttonsContainer button:focus {
+    outline:0;
+}
+.list-container hr{
+    width: 60%;
+    border-top: 1px solid rgba(200, 200, 200, .4);
+    height: 0px;
+    margin-bottom: 2vh;
+    margin-left: 4vw;
+}
+
+.list-container h1{
+    font-family: Barlow;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 40px;
+    line-height: 30px;
+    color: #7F91A8;
+    position: relative;
+    left: 7%;
+}
+
+.list-unclickedButton{
+    font-family: Barlow;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    background-color: white;
+    border-style: none;
+    border-bottom-style: solid;
+    margin: 2vh 2vw 2vh 0vw;
+
+}
+
+.list-clickedButton{
+    font-family: Barlow;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    background-color: white;
+    border-style: none;
+    border-bottom-style: solid;
+    border-bottom-color: #7F91A8;
+    margin: 2vh 2vw 2vh 0vw;
+}
