@@ -56,7 +56,7 @@ class StreamHolder extends React.Component {
             friends: [],
             closeFriends: [],
             pendingFriends: [],
-
+            sentRequests: []
 
 
         };
@@ -151,6 +151,35 @@ class StreamHolder extends React.Component {
                     
                 } else {
                     console.log("Server Error!");
+                    throw res;
+                }
+            })
+        }, 500);
+    }
+    getSentRequests(){
+        document.body.style.margin = "0";
+        let token = this.props.token;
+        let headers = {
+            "Content-Type": "application/json",
+            'Accept': 'application/json',
+          //  'Access-Control-Allow-Origin': '*'
+        };
+        if (token) {
+            headers["Authorization"] = `Token ${token}`;
+        }
+        setTimeout(() => {
+            fetch('http://backpondi.herokuapp.com/api/auth/following/', {headers, method: "GET"})
+            .then(res => {
+                if(res.status < 500) {
+                    return res.json().then(data => {
+                        var allFollowing = JSON.parse(data);
+                        this.setState({
+                            sentRequests : allFollowing[requesting]
+                        })
+                    })
+                }
+                else{
+                    console.log('Server Error');
                     throw res;
                 }
             })
@@ -267,10 +296,7 @@ class StreamHolder extends React.Component {
                         this.setState({
                             myprofile: data
                         })
-
                     })
-
-                    
                 } else {
                     console.log("Server Error!");
                     throw res;
@@ -438,7 +464,7 @@ class StreamHolder extends React.Component {
         >
             {(style) => (
                 <div  style={{opacity: style.opacity}}>
-            {this.state.friend && <FriendPage key={5} searching={true} prompts={this.state.prompts} getFriendProfile={this.addFriendProfile.bind(this)} friendPosts={this.state.friendPosts} getMyFriends={this.getMyFriends.bind(this)} friends={this.state.friends} closeFriends={this.state.closeFriends} pendingFriends={this.state.pendingFriends}/>}
+            {this.state.friend && <FriendPage key={5} searching={true} prompts={this.state.prompts} getFriendProfile={this.addFriendProfile.bind(this)} friendPosts={this.state.friendPosts} getMyFriends={this.getMyFriends.bind(this)} friends={this.state.friends} closeFriends={this.state.closeFriends} pendingFriends={this.state.pendingFriends} getSentRequests={this.getSentRequests.bind(this)} sentRequests={this.state.sentRequests}/>}
                           </div>
 
                 )}
@@ -461,7 +487,7 @@ class StreamHolder extends React.Component {
         >
             {(style) => (
                 <div  style={{opacity: style.opacity}}>
-            {this.state.settings && <FriendPage key={6} searching={false} prompts={this.state.prompts} getFriendProfile={this.addFriendProfile.bind(this)} friendPosts={this.state.friendPosts} getMyFriends={this.getMyFriends.bind(this)} friends={this.state.friends} closeFriends={this.state.closeFriends} pendingFriends={this.state.pendingFriends}/>}
+            {this.state.settings && <FriendPage key={6} searching={false} prompts={this.state.prompts} getFriendProfile={this.addFriendProfile.bind(this)} friendPosts={this.state.friendPosts} getMyFriends={this.getMyFriends.bind(this)} friends={this.state.friends} closeFriends={this.state.closeFriends} pendingFriends={this.state.pendingFriends} getSentRequests={this.getSentRequests.bind(this)} sentRequests={this.state.sentRequests}/>}
                           </div>
 
                 )}

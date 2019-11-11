@@ -380,4 +380,9 @@ export const sendRequest = (friendName) => {
            }
          })  
      }
+     
+}
+
+export const cancelRequest = (friendName) => {
+ 
 }

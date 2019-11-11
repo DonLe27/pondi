@@ -35,6 +35,14 @@ class UserDisplay extends React.Component {
                 </div>
             );
         }
+        else if (this.props.userType === "sentRequest")
+        {
+            return(
+                <div >
+                <UserItem  avatar={this.props.avatar}  funcArr={[this.props.cancelRequest.bind(this)]} funcName={["cancel friend request"]} username={this.props.username}/>
+                </div>
+            ); 
+        }
         else //Stranger
         {
             return(

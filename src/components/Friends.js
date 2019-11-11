@@ -13,6 +13,8 @@ class FriendPage extends React.Component{
 		var friendDisplays = [];
 		var closeFriendDisplays = [];
 		var pendingFriendDisplays = [];
+		var sentRequestDisplays = [];
+		
 		for(var i = 0; i < props.friends.length; i++)
 		{
 			friendDisplays.push(
@@ -31,10 +33,17 @@ class FriendPage extends React.Component{
 				<UserDisplay key={this.props.pendingFriends[i]["username"] + ' p'} userType="pendingFriend" acceptFriend={this.acceptFriendHandler.bind(this)} username={this.props.pendingFriends[i]["username"]} avatar={this.props.pendingFriends[i]["avatar"]}/>
 			)
 		}
+		for(var i = 0; i < props.sentRequests.length; i++)
+		{
+			sentRequestDisplays.push(
+				<UserDisplay key={this.props.pendingFriends[i]["username"] + ' r'} userType="sentRequest" cancelRequest={this.cancelRequestHandler.bind(this)} username={this.props.pendingFriends[i]["username"]} avatar={this.props.pendingFriends[i]["avatar"]}/>
+			)
+		}
 		this.state = {
 			friendDisplays : friendDisplays,
 			closeFriendDisplays : closeFriendDisplays,
 			pendingFriendDisplays : pendingFriendDisplays,
+			sentRequestDisplays : sentRequestDisplays,
 			searchedUser : null, 
 			searchedUserType: null,
 			searching: this.props.searching
@@ -74,6 +83,17 @@ class FriendPage extends React.Component{
 		}
 		return res;
 	}
+	isSentRequest = (friendname) => {
+		var res = false;
+		for(var i = 0; i < this.props.sentRequests.length; i++)
+		{
+			if(this.props.isSentRequest[i]["username"] == friendname){
+				res = true;
+				break;
+			}
+		}
+		return res;
+	}
 	acceptFriendHandler = (friendname) => {
 		this.props.acceptFriend(friendname)
 		this.props.getMyFriends();
@@ -85,6 +105,9 @@ class FriendPage extends React.Component{
 	}
 	requestFriendHandler = (friendname) => {
 		this.props.sendRequest(friendname)
+	}
+	cancelRequestHandler = (friendname) => {
+		this.props.cancelRequest(friendname);
 	}
 	searchUserHandler = (friendname) => {
 		console.log("Searching for: " + friendname)
@@ -103,6 +126,9 @@ class FriendPage extends React.Component{
 				}
 				else if (this.isCloseFriend(searchedUsername)){
 					searchType = "closeFriend"
+				}
+				else if (this.isSentRequest(searchedUsername)){
+					searchType = "sentRequest";
 				}
 				else //send request to
 				{
@@ -216,7 +242,7 @@ class FriendPage extends React.Component{
 		else{
 			return (
 				<div className="FriendContainer">
-					<UserList friendDisplays={this.state.friendDisplays} closeFriendDisplays={this.state.closeFriendDisplays} pendingFriendDisplays={this.state.pendingFriendDisplays}></UserList>
+					<UserList friendDisplays={this.state.friendDisplays} closeFriendDisplays={this.state.closeFriendDisplays} pendingFriendDisplays={this.state.pendingFriendDisplays} sentRequestDisplays={this.state.sentRequestDisplays}></UserList>
 
 				</div>
 				);
