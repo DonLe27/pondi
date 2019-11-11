@@ -13,6 +13,8 @@
     overflow: auto;
   }
 
+
+
   .choice-container {
     position: absolute;
     left: 37vw;
@@ -50,7 +52,15 @@
     height: 5vh;
     font-size: 3vh;
     font-family: Barlow;
+    
   }
+
+.post-container button:focus {
+    outline:0;
+}
+.post-container button:active {
+  background-color:#bfbfbf;
+}
   .Privacy {
     cursor: pointer;
     right: 5vw;
@@ -62,7 +72,18 @@
     font-size: 1vh;
     font-family: Barlow;
   }
-  
+
+
+  .privacy-button{
+    font-family: Barlow;
+    font-size: 1.5vw;
+    border-radius: 12px;
+    background-color: #F7F8F8;
+  }
+  .privacy-container button:focus{
+    outline:0
+  }
+
   .Categories {
     position: absolute;
     border: none;
@@ -109,7 +130,7 @@
     resize: none;
     font-size: 2.5vh;
     font-family: "Barlow";
-    color: #b2b2b2;
+    color: #404040;
     border: none;
     outline: none;
   }

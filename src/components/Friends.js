@@ -90,6 +90,7 @@ class FriendPage extends React.Component{
 		console.log("Searching for: " + friendname)
 		this.props.searchUser(friendname).then((result) => {
 			if (result["status"] < 500){
+				console.log("Search user data"+result["data"]["friendObject"])
 				console.log(result["data"]["friendObject"]["username"])
 				let searchedUsername = result["data"]["friendObject"]["username"]
 				console.log("Searched and found:" + searchedUsername)
@@ -122,16 +123,21 @@ class FriendPage extends React.Component{
 	}
 	componentWillReceiveProps(newProps)
 	{
+		let newSearchedUserType = "stranger"
 		if (newProps.friends != this.props.friends){
 			var newFriendDisplays = []
 			for(var i = 0; i < newProps.friends.length; i++)
 			{
+				//Update searched friend
+				if (newProps.friends[i].username === this.state.searchedUser.username){
+					newSearchedUserType = "friend"
+				}
 				newFriendDisplays.push(
 					<UserDisplay key={newProps.friends[i]["username"] + ' c'} userType="friend" deleteFriend={this.deleteFriendHandler.bind(this)} username={newProps.friends[i]["username"]} avatar={newProps.friends[i]["avatar"]}/>
 				)
 			}
 			this.setState({
-				friendDisplays: newFriendDisplays
+				friendDisplays: newFriendDisplays,
 			})
 	
 		}
@@ -139,12 +145,16 @@ class FriendPage extends React.Component{
 			var newPendingFriendDisplays = []
 			for(var i = 0; i < newProps.pendingFriends.length; i++)
 			{
+				//Update searched friend
+				if (newProps.pendingFriends[i].username === this.state.searchedUser.username){
+					newSearchedUserType = "pendingFriend"
+				}
 				newPendingFriendDisplays.push(
 					<UserDisplay key={newProps.pendingFriends[i]["username"] + ' c'} userType="pendingFriend" acceptFriend={this.acceptFriendHandler.bind(this)} username={newProps.pendingFriends[i]["username"]} avatar={newProps.pendingFriends[i]["avatar"]}/>
 				)
 			}
 			this.setState({
-				pendingFriendDisplays: newPendingFriendDisplays
+				pendingFriendDisplays: newPendingFriendDisplays,
 			})
 			console.log(newProps.pendingFriends)
 		}	
@@ -152,15 +162,22 @@ class FriendPage extends React.Component{
 			var newCloseFriendDisplays = []
 			for(var i = 0; i < newProps.closeFriends.length; i++)
 			{
+				//Update searched friend
+				if (newProps.closeFriends[i].username === this.state.searchedUser.username){
+					newSearchedUserType = "closeFriend"
+				}
 				newCloseFriendDisplays.push(
 					<UserDisplay key={newProps.closeFriends[i]["username"] + ' c'} userType="closeFriend" deleteFriend={this.deleteFriendHandler.bind(this)} username={newProps.closeFriends[i]["username"]} avatar={newProps.closeFriends[i]["avatar"]}/>
 				)
 			}
 			this.setState({
-				closeFriendDisplays: newCloseFriendDisplays
+				closeFriendDisplays: newCloseFriendDisplays,
 			})
 		
 		}	
+		this.setState({
+			searchedUserType: newSearchedUserType
+		})
 		
 	}
 	

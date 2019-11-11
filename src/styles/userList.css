@@ -4,6 +4,9 @@
     left: 7%;
 }
 
+.buttonsContainer button:focus {
+    outline:0;
+}
 .list-container hr{
     width: 60%;
     border-top: 1px solid rgba(200, 200, 200, .4);
@@ -22,7 +25,7 @@
     position: relative;
     left: 7%;
 }
-button:focus {outline:0;}
+
 .list-unclickedButton{
     font-family: Barlow;
     font-style: normal;

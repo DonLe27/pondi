@@ -14,8 +14,6 @@ class UserButton extends React.Component{
 
         render(){
             const buttonStyle = {
-                width: "15%",
-                height: "25%",
                 backgroundColor: "white",
                 borderRadius: "12px",
                 fontSize:"0.75vw",

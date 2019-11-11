@@ -25,6 +25,10 @@
     margin: 0 5vw 0 5vw;
 }
 
+.prompt h1 {
+    color: #000000;
+    font-weight: 500;
+}
 .prompt hr {
     width: 100%;
     border-top: 1px solid rgba(200, 200, 200, .4);
