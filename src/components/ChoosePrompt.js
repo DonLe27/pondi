@@ -7,33 +7,39 @@ class ChoosePrompt extends React.Component {
 	constructor(props){
 		super(props);
 		var promptsLength = this.props.prompts.length
-		this.state = {
-			selectedOption: {value: promptsLength, label: this.props.prompts[this.props.prompts.length-1].question}
-		}
-		//console.log("In chose prompts")
-		//console.log(this.props.prompts)
-		this.prompts = []
+		var prompts = []
 		for(var i = promptsLength-1; i > -1; i--){
-			var question = this.props.prompts[i].question
-			console.log(this.props.prompts[i].category)
 			var id = this.props.prompts[i].id
-			this.prompts.push({value: id, label: question})
+			var question = this.props.prompts[i].question
+			prompts.push({value: id, label: question})
+		}
+		console.log(this.prompts)
+		this.state = {
+			selectedOption: {value: promptsLength, label: this.props.prompts[this.props.prompts.length-1].question},
+			selectedPrompts: prompts
 		}
 	}
+	
 
-	sortIntoCategories = (chosenCategories) => {
-		var questionsThatSatisfyChosenCategories = [];
-		for(var i = promptsLength - 1; i > -1; i--){
-			var question = this.props.prompts[i].question
-			for (var j = chosenCategories.length - 1; j > -1; j--){
-				if (question.category == chosenCategories[j]){
-					questionsThatSatisfyChosenCategories.push(question)
+	checkCategory = (inputCategories) => e => {
+		var specifiedThemeList = []; //
+		for(var i = this.props.prompts.length-1; i > -1; i--){
+			var promptCategories = this.props.prompts[i].category
+			var isCategory = true;
+			for (var j = inputCategories.length - 1; j > -1; j--){
+				if (promptCategories.indexOf(inputCategories[j]) < 0){
+					isCategory = false;
 				}
 			}
+			if (isCategory == true){
+				specifiedThemeList.push({value: this.props.prompts[i].id, label: this.props.prompts[i].question});
+			}	
 		}
-		return <div></div>
+		console.log(specifiedThemeList);
+		this.setState({selectedOption: {value: specifiedThemeList.length, label: specifiedThemeList[specifiedThemeList-1]},
+					   selectedPrompts: specifiedThemeList})
 	}
-
+	
 	handleChange = (newOption) => {
 		this.setState({ selectedOption: newOption });
 		this.props.changePrompt(newOption["value"])
@@ -77,13 +83,18 @@ class ChoosePrompt extends React.Component {
 			  borderWidth: '1px',
 			  height: '7.5vh'
 			})}
+			
 		return (
+			<div>
+				<div>
+				 <button onClick={this.checkCategory(["funny"])}>Private</button>
+			</div>
 			<div>	
 			<Select
 			styles={customStyles}
 			className="custom-select"
 			defaultValue={this.state.selectedOption}
-			options={this.prompts}
+			options={this.state.selectedPrompts}
 			onChange={this.handleChange}
 			maxMenuHeight="45vh"
 			isSearchable={false}
@@ -96,9 +107,12 @@ class ChoosePrompt extends React.Component {
 				},
 			  })}
 		  />
+		 
+		  </div>
 		  </div>
 		);
 	}
-} 
+ 
+}
 
 export default ChoosePrompt
