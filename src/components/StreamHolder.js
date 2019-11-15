@@ -124,6 +124,7 @@ class StreamHolder extends React.Component {
                 }, 500);
     }
     getMyFriends(){
+        console.log("GET MY FRIENDS CALLED");
         document.body.style.margin = "0";
         //document.body.style.overflow = "hidden";
         let token = this.props.token;
@@ -141,6 +142,7 @@ class StreamHolder extends React.Component {
                 if (res.status < 500) {
                     return res.json().then(data => {
                         var allFriends = JSON.parse(data)
+                        
                         this.setState({
                             friends: allFriends["friends"],
                             closeFriends: allFriends["closefriends"],
@@ -157,6 +159,7 @@ class StreamHolder extends React.Component {
         }, 500);
     }
     getSentRequests(){
+        console.log("getSentRequests CALLED");
         document.body.style.margin = "0";
         let token = this.props.token;
         let headers = {
@@ -173,8 +176,9 @@ class StreamHolder extends React.Component {
                 if(res.status < 500) {
                     return res.json().then(data => {
                         var allFollowing = JSON.parse(data);
+                        console.log("FETCHED SENT" + allFollowing);
                         this.setState({
-                            sentRequests : allFollowing[requesting]
+                            sentRequests : allFollowing["requesting"]
                         })
                     })
                 }
@@ -184,6 +188,7 @@ class StreamHolder extends React.Component {
                 }
             })
         }, 500);
+        
     }
     getMyPosts(){
         document.body.style.margin = "0";
@@ -388,6 +393,7 @@ class StreamHolder extends React.Component {
             })
         }, 500);
         //fetch('https://backpondi.herokuapp.com/api/auth/profile/',  {headers, method: "GET"})
+        //this.getSentRequests();
 
     }
 

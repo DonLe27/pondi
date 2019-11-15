@@ -37,6 +37,7 @@ class UserDisplay extends React.Component {
         }
         else if (this.props.userType === "sentRequest")
         {
+            console.log("SENT REQUEST RENDERED");
             return(
                 <div >
                 <UserItem  avatar={this.props.avatar}  funcArr={[this.props.cancelRequest.bind(this)]} funcName={["cancel friend request"]} username={this.props.username}/>
@@ -45,8 +46,9 @@ class UserDisplay extends React.Component {
         }
         else //Stranger
         {
+            console.log("STRANGER FOUND");
             return(
-
+                
                 <div>
                 <UserItem avatar={this.props.avatar}  funcArr={[this.props.requestFriend.bind(this)]} funcName={["send friend request"]} username={this.props.username}/>
                 </div>
