@@ -20,7 +20,7 @@ class Prompt extends React.Component {
       theme: "love",
       privacy: "p",
       prompt: this.props.prompts[this.props.prompts.length-1].question,
-      promptId: this.props.prompts.length,
+      promptId: this.props.prompts[this.props.prompts.length-1].id,
       myposts: this.props.myposts,
     };
   }

@@ -10,6 +10,11 @@ function UserItem(props){
             <button className="userButton" onClick={()=>{props.funcArr[0](props.username)}}>
                             {props.funcName[0]}
             </button>
+            {props.funcName.length > 1 && 
+                <button className="userButton" onClick={()=>{props.funcArr[1](props.username)}}>
+                        {props.funcName[1]}
+                </button>
+            }
             </div>
 
     );

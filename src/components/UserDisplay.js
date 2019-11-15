@@ -31,7 +31,7 @@ class UserDisplay extends React.Component {
         {
             return(
                 <div >
-                <UserItem  avatar={this.props.avatar}  funcArr={[this.props.acceptFriend.bind(this)]} funcName={["accept friend"]} username={this.props.username}/>
+                <UserItem  avatar={this.props.avatar}  funcArr={[this.props.acceptFriend.bind(this), this.props.acceptCloseFriend.bind(this)]} funcName={["accept friend", "accept close friend"]} username={this.props.username}/>
                 </div>
             );
         }

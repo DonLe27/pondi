@@ -1,11 +1,13 @@
 import React from 'react';
 import '../styles/choosePrompt.css';
 import Select from 'react-select'
+
 class ChoosePrompt extends React.Component {
 	
 
 	constructor(props){
 		super(props);
+		console.log(this.props.prompts)
 		var promptsLength = this.props.prompts.length
 		var prompts = []
 		for(var i = promptsLength-1; i > -1; i--){
@@ -13,11 +15,12 @@ class ChoosePrompt extends React.Component {
 			var question = this.props.prompts[i].question
 			prompts.push({value: id, label: question})
 		}
-		console.log(this.prompts)
 		this.state = {
-			selectedOption: {value: promptsLength, label: this.props.prompts[this.props.prompts.length-1].question},
+			selectedOption: {value: props.prompts[promptsLength-1].id, label: props.prompts[promptsLength-1].question},
 			selectedPrompts: prompts
 		}
+		console.log(this.state.selectedOption)
+		console.log(this.state.selectedPrompts)
 	}
 	
 
@@ -48,11 +51,6 @@ class ChoosePrompt extends React.Component {
 		return <div></div>
 	  }
 	render() {
-		const DropdownIndicator = props => {
-			return (
-				<div></div>  
-			);
-		  };
 		const customStyles = {
 			option: (provided, state) => ({
 				...provided,
@@ -83,12 +81,11 @@ class ChoosePrompt extends React.Component {
 			  borderWidth: '1px',
 			  height: '7.5vh'
 			})}
-			
+		console.log("In render")
+		console.log(this.state.selectedPrompts)
 		return (
 			<div>
-				<div>
-				 <button onClick={this.checkCategory(["funny"])}>Private</button>
-				</div>
+		
 			<div>	
 			<Select
 			styles={customStyles}
@@ -109,6 +106,7 @@ class ChoosePrompt extends React.Component {
 		  />
 		 
 		  </div>
+
 		  </div>
 		);
 	}

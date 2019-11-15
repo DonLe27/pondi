@@ -25,7 +25,7 @@ class ProfPic extends React.Component {
             pic = turtlePic
         if (this.props.avatar == "stingray")
             pic = stingrayPic
-        if (this.avatar == "butterflies")
+        if (this.props.avatar == "butterflies")
             pic = butterfliesPic
         return (
             <div className={this.classType} >
