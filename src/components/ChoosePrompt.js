@@ -88,7 +88,7 @@ class ChoosePrompt extends React.Component {
 			<div>
 				<div>
 				 <button onClick={this.checkCategory(["funny"])}>Private</button>
-			</div>
+				</div>
 			<div>	
 			<Select
 			styles={customStyles}

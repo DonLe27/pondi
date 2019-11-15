@@ -25,13 +25,9 @@ class RegisterAvatarColor extends Component {
         // Avatars:
         this.avatars = [
             "crab",
-            "kangaroo",
-            "shrimp",
             "turtle",
-            "snake",
-            "squirrel",
             "stingray",
-            "hedgehog"
+            "butterflies"
         ]
 
         this.colors = [
@@ -53,14 +49,21 @@ class RegisterAvatarColor extends Component {
     validate() {
         return this.state.first_name.length > 0 &&
             this.state.last_name.length > 0 &&
-            this.state.avatar !== "" &&
-            this.state.color !== "";
-        //&& this.state.repeated_password.length > 0;
+            this.state.avatar !== "" 
+           // && this.state.color !== "";
+        //&& this.state.repeated_password.length > 0; 
     }
 
     handleSubmit(event) {
+        console.log("handle submit fired")
+        this.setState({redirect: true}) 
         event.preventDefault();
-
+        console.log(this.props.updateAvatarColor(
+            this.state.first_name,
+            this.state.last_name,
+            this.state.avatar,
+            this.state.color
+        ));
     }	
 
     redirectToHome() {
@@ -68,6 +71,7 @@ class RegisterAvatarColor extends Component {
     }
 
     render() {
+        console.log("yes" + process.env.PUBLIC_URL)
         if (this.state.redirect === true) {
             return (<Redirect to='/home'></Redirect>)
         }
@@ -76,9 +80,9 @@ class RegisterAvatarColor extends Component {
         	      <h1 className="Register-H1">Registration</h1>
 
             <div className="Register">
-                  <form onSubmit={this.handleSubmit} className="RegisterForm">
+            <form onSubmit={this.handleSubmit} className="RegisterForm">
 
-  			<p className="register-wide-label"> Choose your Spirit Animal </p>
+  			<p className="register-wide-label"> Choose your avatar </p>
   			{this.avatars.map((avatar, index) => 
        			<Button key={index} className="avatar-button" onClick={() => (this.setState({avatar: avatar, selected_avi: index}))}>
        			<img src={process.env.PUBLIC_URL + avatar + ".png"} />
@@ -88,8 +92,8 @@ class RegisterAvatarColor extends Component {
 
       		<hr />
 
-       { (this.state.avatar != "" ) &&  <p className="avatar-final" style={{background: this.state.selected_color}}>{<img src={process.env.PUBLIC_URL + this.state.avatar + ".png"} />}</p>}
-
+       { (this.state.avatar != "" ) &&  <p className="avatar-final" style={{background: "#98AABB"}}>{<img src={process.env.PUBLIC_URL + this.state.avatar + ".png"} />}</p>}
+       {/* 
      <hr />
 
         <p className="register-wide-label"> Choose a Color </p>
@@ -99,14 +103,15 @@ class RegisterAvatarColor extends Component {
        			</Button>
   				)
       		}
-
+        -->
+        */}
 		
 <Button className="register-button"
             block
             bsSize="large"
             disabled={!this.validate()}
             type="submit"
-            onClick={this.redirectToHome}
+           // onClick={this.redirectToHome}
       
         >next
         </Button>
@@ -138,7 +143,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        updateAvatarColor: (first_name, last_name, animal, color) => dispatch(auth.updateAvatarColor(first_name, last_name, animal, color))
+        updateAvatarColor: (first_name, last_name, animal, color) => 
+            dispatch(auth.updateAvatarColor(first_name, last_name, animal, color))
     };
 }
 

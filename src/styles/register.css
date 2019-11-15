@@ -149,11 +149,12 @@ background: linear-gradient(302.47deg, #D6E4EE -0.66%, #FFFFFF 134.48%);
 
 .avatar-button img {
     width: calc(10vh);
+    background-color:  #98AABB;
     height: calc(10vh);
 }
 
 .avatar-button:hover{
-    background-color: rgba(0,0,0,.4);
+    background-color: #5c748a;
 }
 
 div .color-button {
@@ -177,6 +178,7 @@ div .color-button {
     margin-bottom: 0vh;
     margin-top: 0vh;
     border-radius: 50%;
+    background-color:  #98AABB;
     border: none;
 }
 

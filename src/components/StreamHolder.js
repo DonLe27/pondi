@@ -212,8 +212,11 @@ class StreamHolder extends React.Component {
                  //       console.log('DATA:', data);
                         this.setState({
                             leftSide: <SideBar 
+                            first_name={data.user.first_name}
+                            last_name={data.user.last_name}
                             username={data.user.username}
                             avatar={data.animal}
+                            color={data.color}
                             addStream={this.addStream.bind(this)} 
                             addarchive={this.addarchive.bind(this)}
                             addOcean={this.addOcean.bind(this)}
@@ -351,7 +354,7 @@ class StreamHolder extends React.Component {
                         this.setState({
                             friendPosts: data
                         })
-                   //     console.log(this.state.friendPosts)
+                       console.log("FRIEND POSTS" + data)
                     })
 
                     
@@ -414,7 +417,7 @@ class StreamHolder extends React.Component {
         >
             {(style) => (
                 <div  style={{opacity: style.opacity}}>
-            {this.state.archive &&  <Archive key={3} prompts={this.state.prompts} myposts={this.state.myposts} avatar={this.state.avatar} />}          
+            {this.state.archive &&  <Archive key={3} color={this.state.color} prompts={this.state.prompts} myposts={this.state.myposts} avatar={this.state.avatar} />}          
                              </div>
 
                )}

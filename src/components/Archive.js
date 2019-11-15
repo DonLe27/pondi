@@ -19,7 +19,6 @@ class Archive extends React.Component{
 			var p = this.props.myposts[i];
 			var question;
 			for (var j = 0; j < this.props.prompts.length; j++){
-
 				if(this.allprompts[j].id == this.props.myposts[i].prompt){
 					question = this.props.prompts[j].question
 				}
