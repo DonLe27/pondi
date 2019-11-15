@@ -274,6 +274,7 @@ const mapDispatchToProps = dispatch => {
 			dispatch(auth.searchUser(friendName)),
 		sendRequest: (friendName) => 
 			dispatch(auth.sendRequest(friendName)),
+		
 	};
 	
 }
