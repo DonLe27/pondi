@@ -4,7 +4,8 @@
 	bottom:0px;
 	right: 0px;
 	width:78vw;
-	height:45vh;
+    height:45vh;
+    z-index: -1;
 }
 
 @media only screen and (min-width: 1200px) {
@@ -20,7 +21,8 @@
 		bottom:0px;
 		right: 0px;
 		width:84vw;
-		height:45vh;
+        height:45vh;
+        z-index: -1;
 	}
 }
 
