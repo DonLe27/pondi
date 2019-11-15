@@ -80,7 +80,7 @@ class SideBar extends React.Component {
         //  addarchive={this.props.addPrompt}
           onClick={i => this.props.addPrompt("somevar")}
         >
-          prompt
+          prompts
         </Button>
 
 

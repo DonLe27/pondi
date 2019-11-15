@@ -84,7 +84,7 @@ class Archive extends React.Component{
 			return(
 				<div className="Archive">
 				<HeaderBar header="Pond"/>
-				<h1 style={textStyle}>These are uncharted waters. Visit the prompts and explore yourself.</h1>
+				<h1 style={textStyle}>These are uncharted waters. Visit the prompts and explore.</h1>
 				<img className="search-vector" src={vec1} alt="vector1" />
 				</div>
 			);
