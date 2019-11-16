@@ -20,6 +20,7 @@
 	right: 0px;
 	width:78vw;
 	height:45vh;
+	z-index: -1;
 }
 .searchCenter {
 	margin: 0;
@@ -52,8 +53,9 @@
 		position: absolute;
 		bottom:0px;
 		right: 0px;
-		width:87vw;
+		width:84vw;
 		height:45vh;
+		z-index: -1;
 	}
 }
 

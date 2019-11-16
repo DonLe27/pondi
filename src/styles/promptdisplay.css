@@ -17,7 +17,7 @@
     font-size: 1.75vw;
     width: 40vw;
     float: left;
-    color: #b2b2b2;
+    color: #666666;
     margin-bottom: 3vw;
 }
 
@@ -41,7 +41,18 @@
     font-family: Barlow, sans-serif;
     width: 10vw;
     float: right;
-    color: #b2b2b2;
+    color: #666666;
+    
+}
+
+
+.prompt .prompt_writer {
+    font-family: Barlow, sans-serif;
+    width: calc(10vh);
+    float: right;
+    margin-top: -0.35vh;
+    color: #666666;
+    font-size: 2vh;
 }
 
 .avatar-prompt {
@@ -81,7 +92,7 @@
         font-size: 1.6vh;
         width: 32vw;
         float: left;
-        color: #b2b2b2;
+        color: #666666;
         margin-bottom: 3vw;
     }
 
@@ -101,10 +112,20 @@
         font-family: Barlow, sans-serif;
         width: 10vw;
         float: right;
-        color: #b2b2b2;
+        color: #666666;
         font-size: 1.5vh;
-        margin-top: 2vh;
+        margin-top: -1vh;
 
+    }
+
+
+    .prompt .prompt_writer {
+        font-family: Barlow, sans-serif;
+        width: calc(10vh);
+        float: right;
+        margin-top: -0.35vh;
+        color: #666666;
+        font-size: 2vh;
     }
 
     .avatar-prompt {
@@ -146,7 +167,7 @@
         font-size: 1.75vw;
         width: 34vw;
         float: left;
-        color: #b2b2b2;
+        color: #666666;
         margin-bottom: 3vw;
     }
 
@@ -164,10 +185,21 @@
 
     .prompt .prompt_date {
         font-family: Barlow, sans-serif;
-        width: 7.5vw;
+        width: 5.5vw;
         font-size: 2vh;
         float: right;
-        color: #b2b2b2;
+        color: #666666;
+
+    }
+
+
+    .prompt .prompt_writer {
+        font-family: Barlow, sans-serif;
+        width: calc(10vh);
+        float: right;
+        margin-top: -0.35vh;
+        color: #666666;
+        font-size: 2vh;
     }
 
     .avatar-prompt {
@@ -210,8 +242,9 @@
         font-size: 2.1vh;
         width: calc(100vw - 38vh - 33vh);
         float: left;
-        color: #b2b2b2;
+        color: #666666;
         margin-bottom: 3vh;
+        margin-top: 2vh;
     }
 
     .prompt {
@@ -228,8 +261,18 @@
         font-family: Barlow, sans-serif;
         width: calc(10vh);
         float: right;
-        margin-top: 2.65vh;
-        color: #b2b2b2;
+        margin-top: -1.35vh;
+        color: #666666;
+        font-size: 2vh;
+        padding-top: -1.5vh;
+    }
+
+    .prompt .prompt_writer {
+        font-family: Barlow, sans-serif;
+        width: calc(10vh);
+        float: right;
+        margin-top: -0.35vh;
+        color: #666666;
         font-size: 2vh;
     }
 
@@ -272,7 +315,7 @@
         font-size: 1.7vh;
         width: calc(55vw);
         float: left;
-        color: #b2b2b2;
+        color: #666666;
         margin-bottom: 3vh;
     }
 
@@ -291,8 +334,17 @@
         width: calc(12vw);
         float: right;
         margin-top: 1.8vh;
-        color: #b2b2b2;
+        color: #666666;
         font-size: 1.7vh;
+    }
+
+    .prompt .prompt_writer {
+        font-family: Barlow, sans-serif;
+        width: calc(10vh);
+        float: right;
+        margin-top: -0.35vh;
+        color: #666666;
+        font-size: 2vh;
     }
 
     .avatar-prompt {

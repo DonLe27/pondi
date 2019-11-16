@@ -17,6 +17,7 @@ import Prompt from './Prompt.js';
 import FriendPage from './Friends.js';
 import FriendProfile from './FriendProfile';
 import Settings from './Settings'
+import { all } from 'q';
 
 class StreamHolder extends React.Component {
     constructor(props) {
@@ -56,7 +57,7 @@ class StreamHolder extends React.Component {
             friends: [],
             closeFriends: [],
             pendingFriends: [],
-            sentRequests: []
+            sentRequests: [],
 
 
         };
@@ -246,8 +247,11 @@ class StreamHolder extends React.Component {
                  //       console.log('DATA:', data);
                         this.setState({
                             leftSide: <SideBar 
+                            first_name={data.user.first_name}
+                            last_name={data.user.last_name}
                             username={data.user.username}
                             avatar={data.animal}
+                            color={data.color}
                             addStream={this.addStream.bind(this)} 
                             addarchive={this.addarchive.bind(this)}
                             addOcean={this.addOcean.bind(this)}
@@ -319,8 +323,6 @@ class StreamHolder extends React.Component {
                         })
 
                     })
-
-                    
                 } else {
                     console.log("Server Error!");
                     throw res;
@@ -342,14 +344,35 @@ class StreamHolder extends React.Component {
                             pendingFriends: allFriends["pendingfriends"]
                         })
                     })
-
-                    
                 } else {
                     console.log("Server Error!");
                     throw res;
                 }
             })
         }, 500);
+        //get sent requests
+        console.log("Before fetch")
+        setTimeout(() => {
+            fetch('http://backpondi.herokuapp.com/api/auth/following/', {headers, method: "GET"})
+            .then(res => {
+                if(res.status < 500) {
+                    return res.json().then(data => {
+                        var allFollowing = JSON.parse(data);
+                        
+                        console.log("FETCHED SENT" + allFollowing);
+                        console.log(allFollowing.requesting)
+                        console.log(allFollowing.following)
+                        this.setState({
+                            sentRequests : allFollowing["requesting"]
+                        })
+                    })
+                }
+                else {
+                    console.log("Server Error");
+                    throw res;
+                }
+            })
+        })
         /////////////////Get ocean posts
         setTimeout(() => {
             fetch('https://backpondi.herokuapp.com/api/auth/oceanposts/',  {headers, method: "GET"})
@@ -382,7 +405,7 @@ class StreamHolder extends React.Component {
                         this.setState({
                             friendPosts: data
                         })
-                   //     console.log(this.state.friendPosts)
+                       console.log("FRIEND POSTS" + data)
                     })
 
                     
@@ -446,7 +469,7 @@ class StreamHolder extends React.Component {
         >
             {(style) => (
                 <div  style={{opacity: style.opacity}}>
-            {this.state.archive &&  <Archive key={3} prompts={this.state.prompts} myposts={this.state.myposts} avatar={this.state.avatar} />}          
+            {this.state.archive &&  <Archive key={3} color={this.state.color} prompts={this.state.prompts} myposts={this.state.myposts} avatar={this.state.avatar} />}          
                              </div>
 
                )}

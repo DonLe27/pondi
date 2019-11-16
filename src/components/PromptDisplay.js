@@ -17,13 +17,21 @@ class PromptDisplay extends React.Component {
 	}
 
 	render(){
+
+		var rightDisplay = this.props.first_name + " " + this.props.last_name 
+		
 		return(
 			<div>
 			<ProfPic classType="avatar-prompt" avatar={this.avatar}/>
 			<div className="prompt">
 			<h1 className="prompt_title">{this.props.title}</h1>
+			
 			<p className="prompt_contents">{this.prompt_contents}</p>
+			{this.props.first_name && <p className="prompt_writer"> {rightDisplay} </p>}
 			<p className="prompt_date">{this.prompt_date}</p>
+			
+			
+
 			<hr/>
 			</div>
 			</div>

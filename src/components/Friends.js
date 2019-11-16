@@ -30,7 +30,7 @@ class FriendPage extends React.Component{
 		for(var i = 0; i < props.pendingFriends.length; i++)
 		{
 			pendingFriendDisplays.push(
-				<UserDisplay key={this.props.pendingFriends[i]["username"] + ' p'} userType="pendingFriend" acceptFriend={this.acceptFriendHandler.bind(this)} username={this.props.pendingFriends[i]["username"]} avatar={this.props.pendingFriends[i]["avatar"]}/>
+				<UserDisplay key={this.props.pendingFriends[i]["username"] + ' p'} userType="pendingFriend" acceptCloseFriend={this.acceptCloseFriendHandler} acceptFriend={this.acceptFriendHandler.bind(this)} username={this.props.pendingFriends[i]["username"]} avatar={this.props.pendingFriends[i]["avatar"]}/>
 			)
 		}
 		for(var i = 0; i < props.sentRequests.length; i++)
@@ -99,6 +99,10 @@ class FriendPage extends React.Component{
 		this.props.acceptFriend(friendname)
 		this.props.getMyFriends();
 	}
+	acceptCloseFriendHandler = (friendname) => {
+		this.props.acceptCloseFriend(friendname)
+		this.props.getMyFriends();
+	}
 
 	deleteFriendHandler = (friendname) => {
 		this.props.deleteFriend(friendname)
@@ -106,11 +110,11 @@ class FriendPage extends React.Component{
 	}
 	requestFriendHandler = (friendname) => {
 		this.props.sendRequest(friendname);
-		this.props.getSentRequests();
+		//this.props.getSentRequests();
 	}
 	cancelRequestHandler = (friendname) => {
 		this.props.cancelRequest(friendname);
-		this.props.getSentRequests();
+		//this.props.getSentRequests();
 	}
 	searchUserHandler = (friendname) => {
 		console.log("Searching for: " + friendname)
@@ -159,7 +163,7 @@ class FriendPage extends React.Component{
 			for(var i = 0; i < newProps.friends.length; i++)
 			{
 				//Update searched friend
-				if (newProps.friends[i].username === this.state.searchedUser.username){
+				if (this.state.searchedUser && newProps.friends[i].username === this.state.searchedUser.username){
 					newSearchedUserType = "friend"
 				}
 				newFriendDisplays.push(
@@ -176,11 +180,11 @@ class FriendPage extends React.Component{
 			for(var i = 0; i < newProps.pendingFriends.length; i++)
 			{
 				//Update searched friend
-				if (newProps.pendingFriends[i].username === this.state.searchedUser.username){
+				if (this.state.searchedUser && newProps.pendingFriends[i].username === this.state.searchedUser.username){
 					newSearchedUserType = "pendingFriend"
 				}
 				newPendingFriendDisplays.push(
-					<UserDisplay key={newProps.pendingFriends[i]["username"] + ' c'} userType="pendingFriend" acceptFriend={this.acceptFriendHandler.bind(this)} username={newProps.pendingFriends[i]["username"]} avatar={newProps.pendingFriends[i]["avatar"]}/>
+					<UserDisplay key={newProps.pendingFriends[i]["username"] + ' c'} userType="pendingFriend" acceptCloseFriend={this.acceptCloseFriendHandler} acceptFriend={this.acceptFriendHandler.bind(this)} username={newProps.pendingFriends[i]["username"]} avatar={newProps.pendingFriends[i]["avatar"]}/>
 				)
 			}
 			this.setState({
@@ -193,7 +197,7 @@ class FriendPage extends React.Component{
 			for(var i = 0; i < newProps.closeFriends.length; i++)
 			{
 				//Update searched friend
-				if (newProps.closeFriends[i].username === this.state.searchedUser.username){
+				if (this.state.searchedUser && newProps.closeFriends[i].username === this.state.searchedUser.username){
 					newSearchedUserType = "closeFriend"
 				}
 				newCloseFriendDisplays.push(
@@ -230,11 +234,6 @@ class FriendPage extends React.Component{
 	render() {
 		console.log("Rendering Friends.js")
 		const searchCenter = {
-		//	margin: 0,
-		//	position: "relative",
-		//	top: "30%",
-		//	msTransform: "translateY(-50%)",
-		//	transform: "translateY(-50%)",
 			position:"relative"
 		  }
 		  const userCenter = {
@@ -253,7 +252,7 @@ class FriendPage extends React.Component{
 					<SearchUser searchUser={this.searchUserHandler.bind(this)}/>
 				</div>
 				<div style={userCenter}>
-						{ this.state.searchedUser && <UserDisplay userType={this.state.searchedUserType} key={this.state.searchedUser + "s"} acceptFriend={this.acceptFriendHandler.bind(this)} deleteFriend={this.deleteFriendHandler.bind(this)} cancelRequest={this.cancelRequestHandler} getFriendProfile={this.props.getFriendProfile} requestFriend={this.requestFriendHandler.bind(this)} username={this.state.searchedUser} /> }
+						{ this.state.searchedUser && <UserDisplay userType={this.state.searchedUserType} key={this.state.searchedUser + "s"} acceptCloseFriend={this.acceptCloseFriendHandler} acceptFriend={this.acceptFriendHandler.bind(this)} deleteFriend={this.deleteFriendHandler.bind(this)} getFriendProfile={this.props.getFriendProfile} requestFriend={this.requestFriendHandler.bind(this)} username={this.state.searchedUser} /> }
 				</div>
 				<img className="search-vector" src={vec1} alt="vector1" />
 			</div>
@@ -288,6 +287,8 @@ const mapDispatchToProps = dispatch => {
         loadUser: () => dispatch(auth.loadUser()),
         acceptFriend: (friendName) => 
 			dispatch(auth.acceptFriend(friendName)),
+		acceptCloseFriend: (friendName) => 
+			dispatch(auth.acceptCloseFriend(friendName)),
 		deleteFriend: (friendName) => 
 			dispatch(auth.deleteFriend(friendName)),
 		searchUser: (friendName) => 

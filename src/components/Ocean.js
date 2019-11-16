@@ -13,23 +13,15 @@ class Ocean extends React.Component {
 		super(props);
 		// parse data from parent to get prompts
 		console.log(this.props.oceanPosts)
-		this.avatar=this.props.avatar;
 		this.prompts = [];
 		this.allprompts = this.props.prompts
 		for (var i = 0; i < this.props.oceanPosts.length; i++){
 			var p = this.props.oceanPosts[i];
-			var question;
-			for (var j = 0; j < this.props.prompts.length; j++){
 
-				if(this.allprompts[j].id == this.props.oceanPosts[i].prompt){
-					question = this.props.prompts[j].question
-				}
-			}
 			this.prompts.push(
-					<PromptDisplay key={i} title={question} content={p["body"]} date={p["timestamp"]} avatar={this.avatar}/>
-					);
+				<PromptDisplay key={i} title={p.prompt.question} content={p["body"]} date={p["timestamp"]} avatar={p.profile.animal}/>
+				);
 		}
-		console.log("Rendering archive")
 	}
 
 	

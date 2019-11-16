@@ -5,6 +5,8 @@ import '../styles/archive.css';
 import PromptDisplay from './PromptDisplay.js'
 import Categories from './Categories.js'
 import HeaderBar from './HeaderBar.js'
+import '../styles/searchVector.css';
+import vec1 from "../styles/vectors/vector2.1.png"
 
 class Archive extends React.Component{
 	constructor(props){
@@ -19,7 +21,6 @@ class Archive extends React.Component{
 			var p = this.props.myposts[i];
 			var question;
 			for (var j = 0; j < this.props.prompts.length; j++){
-
 				if(this.allprompts[j].id == this.props.myposts[i].prompt){
 					question = this.props.prompts[j].question
 				}
@@ -60,6 +61,16 @@ class Archive extends React.Component{
 	
 
 	render() {
+		const textStyle = {
+			textAlign: "center",
+			fontFamily: "Barlow",
+			fontStyle: "normal",
+			fontWeight: "bold",
+			fontSize: "2vw",
+			lineHeight: "194px",
+			color: "rgb(152, 170, 187)"
+		}
+		if (this.prompts.length > 0){
 		return (
 		
 		<div className="Archive">
@@ -68,6 +79,16 @@ class Archive extends React.Component{
 		{this.prompts}
 		</div>
 		);
+		}
+		else{
+			return(
+				<div className="Archive">
+				<HeaderBar header="Pond"/>
+				<h1 style={textStyle}>These are uncharted waters. Visit the prompts and explore.</h1>
+				<img className="search-vector" src={vec1} alt="vector1" />
+				</div>
+			);
+		}
 	}
 }
 export default Archive

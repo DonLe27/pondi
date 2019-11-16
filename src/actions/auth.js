@@ -127,25 +127,22 @@ export const register = (username, password, first_name, last_name, email) => {
 
 export const updateAvatarColor = (first_name, last_name, animal, color) => {
   return (dispatch, getState) => {
-    let tmpbody = {
-      'first_name' : first_name,
-      'last_name' : last_name,
-      'animal' : animal, 
-      'color': color
+    let postBody = {
+      "first_name": first_name,
+      "last_name": last_name,
+      "animal": animal,
     }
-    let body = JSON.stringify(tmpbody.first_name);
-    console.log('UPDATE AVATAR BODY:', body);
+
     const token = getState().auth.token;
     let headers = {
       "Content-Type": "application/json",
       'Accept': 'application/json',
-     // 'Access-Control-Allow-Origin': '*'
     };
-    if (token) {
+    if (true) {
       headers["Authorization"] = `Token ${token}`;
     }
-
-    return fetch(BASE_URL + "/api/auth/update/", {headers, tmpbody, method: "PATCH"})
+    console.log("Header: " + headers.Authorization)
+    return fetch(BASE_URL + "/api/auth/update/", {headers : headers, body : JSON.stringify(postBody), method: "PATCH"})
       .then(res => {
         if (res.status < 500) {
           return res.json().then(data => {
@@ -267,7 +264,7 @@ export const acceptFriend = (friendName) => {
        let postBody = {
          "friendname": friendName
        }
-       console.log("Body: " + JSON.stringify(postBody));
+  
        const token = getState().auth.token;
        let headers = {
          "Content-Type": "application/json",
@@ -278,6 +275,35 @@ export const acceptFriend = (friendName) => {
        }
        console.log("Header: " + headers.Authorization)
        return fetch(BASE_URL + "/api/auth/acceptrequest/", {headers : headers, body : JSON.stringify(postBody), method: "PATCH"})
+         .then(res => {
+           console.log('Patch Response:', res);
+           if (res.status < 500) {
+             return res.json().then(data => {
+               return {status: res.status, data};
+             })
+           } else {
+             console.log("Server Error!");
+           }
+         })  
+     }
+}
+
+export const acceptCloseFriend = (friendName) => {
+  return (dispatch, getState) => {
+       let postBody = {
+         "friendname": friendName
+       }
+  
+       const token = getState().auth.token;
+       let headers = {
+         "Content-Type": "application/json",
+         'Accept': 'application/json',
+       };
+       if (true) {
+         headers["Authorization"] = `Token ${token}`;
+       }
+       console.log("Header: " + headers.Authorization)
+       return fetch(BASE_URL + "/api/auth/acceptrequestclose/", {headers : headers, body : JSON.stringify(postBody), method: "PATCH"})
          .then(res => {
            console.log('Patch Response:', res);
            if (res.status < 500) {

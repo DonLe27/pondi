@@ -38,13 +38,13 @@ class SideBar extends React.Component {
   }
 
   render() {
-
+    var displayName = this.props.first_name
     return (
       <div className="SideBar">
         <SidebarButtons addSettings={this.props.addSettings} addFriends={this.props.addFriends}/>
-        <ProfPic classType="avatar" avatar={this.props.avatar} />
+        <ProfPic classType="avatar" color={this.props.color} avatar={this.props.avatar} />
 
-        <Username username={this.props.username} />
+        <Username username={displayName} />
         <Button
           className="Button"
           block
@@ -80,7 +80,7 @@ class SideBar extends React.Component {
         //  addarchive={this.props.addPrompt}
           onClick={i => this.props.addPrompt("somevar")}
         >
-          prompt
+          prompts
         </Button>
 
 
