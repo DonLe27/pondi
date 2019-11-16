@@ -23,8 +23,8 @@
 }
 
 .userButton{
-    width: 8vw;
-    height: 5vh;
+    width: 5vw;
+    height: 6vh;
     background-color: white;
     border-radius: 12px;
     font-size:0.75vw;
@@ -33,7 +33,7 @@
     top: 50%;
     right: 3%;
     transform: translateY(-200%);
-    margin-right: 4%;
+    margin-right: 2%;
 }
 .username-user{
     color: #b2b2b2;

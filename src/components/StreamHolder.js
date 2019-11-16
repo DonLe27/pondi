@@ -17,6 +17,7 @@ import Prompt from './Prompt.js';
 import FriendPage from './Friends.js';
 import FriendProfile from './FriendProfile';
 import Settings from './Settings'
+import { all } from 'q';
 
 class StreamHolder extends React.Component {
     constructor(props) {
@@ -56,7 +57,8 @@ class StreamHolder extends React.Component {
             friends: [],
             closeFriends: [],
             pendingFriends: [],
-
+            requesting: [],
+            following: []
 
 
         };
@@ -124,6 +126,7 @@ class StreamHolder extends React.Component {
                 }, 500);
     }
     getMyFriends(){
+        console.log("GET MY FRIENDS CALLED");
         document.body.style.margin = "0";
         //document.body.style.overflow = "hidden";
         let token = this.props.token;
@@ -141,6 +144,7 @@ class StreamHolder extends React.Component {
                 if (res.status < 500) {
                     return res.json().then(data => {
                         var allFriends = JSON.parse(data)
+                        
                         this.setState({
                             friends: allFriends["friends"],
                             closeFriends: allFriends["closefriends"],
@@ -155,6 +159,38 @@ class StreamHolder extends React.Component {
                 }
             })
         }, 500);
+    }
+    getSentRequests(){
+        console.log("getSentRequests CALLED");
+        document.body.style.margin = "0";
+        let token = this.props.token;
+        let headers = {
+            "Content-Type": "application/json",
+            'Accept': 'application/json',
+          //  'Access-Control-Allow-Origin': '*'
+        };
+        if (token) {
+            headers["Authorization"] = `Token ${token}`;
+        }
+        setTimeout(() => {
+            fetch('http://backpondi.herokuapp.com/api/auth/following/', {headers, method: "GET"})
+            .then(res => {
+                if(res.status < 500) {
+                    return res.json().then(data => {
+                        var allFollowing = JSON.parse(data);
+                        console.log("FETCHED SENT" + allFollowing);
+                        this.setState({
+                            sentRequests : allFollowing["requesting"]
+                        })
+                    })
+                }
+                else{
+                    console.log('Server Error');
+                    throw res;
+                }
+            })
+        }, 500);
+        
     }
     getMyPosts(){
         document.body.style.margin = "0";
@@ -270,10 +306,7 @@ class StreamHolder extends React.Component {
                         this.setState({
                             myprofile: data
                         })
-
                     })
-
-                    
                 } else {
                     console.log("Server Error!");
                     throw res;
@@ -291,8 +324,6 @@ class StreamHolder extends React.Component {
                         })
 
                     })
-
-                    
                 } else {
                     console.log("Server Error!");
                     throw res;
@@ -314,14 +345,36 @@ class StreamHolder extends React.Component {
                             pendingFriends: allFriends["pendingfriends"]
                         })
                     })
-
-                    
                 } else {
                     console.log("Server Error!");
                     throw res;
                 }
             })
         }, 500);
+        //get sent requests
+        console.log("Before fetch")
+        setTimeout(() => {
+            fetch('http://backpondi.herokuapp.com/api/auth/following/', {headers, method: "GET"})
+            .then(res => {
+                if(res.status < 500) {
+                    return res.json().then(data => {
+                        var allFollowing = JSON.parse(data);
+                        
+                        console.log("FETCHED SENT" + allFollowing);
+                        console.log(allFollowing.requesting)
+                        console.log(allFollowing.following)
+                        this.setState({
+                            requesting : allFollowing["requesting"],
+                            following: allFollowing["following"]
+                        })
+                    })
+                }
+                else {
+                    console.log("Server Error");
+                    throw res;
+                }
+            })
+        })
         /////////////////Get ocean posts
         setTimeout(() => {
             fetch('https://backpondi.herokuapp.com/api/auth/oceanposts/',  {headers, method: "GET"})
@@ -365,13 +418,12 @@ class StreamHolder extends React.Component {
             })
         }, 500);
         //fetch('https://backpondi.herokuapp.com/api/auth/profile/',  {headers, method: "GET"})
+        //this.getSentRequests();
 
     }
 
 
     render() {
-
-
         const { ...props } = this.props;
         return (
             <div>
@@ -441,12 +493,13 @@ class StreamHolder extends React.Component {
         >
             {(style) => (
                 <div  style={{opacity: style.opacity}}>
-            {this.state.friend && <FriendPage key={5} searching={true} prompts={this.state.prompts} getFriendProfile={this.addFriendProfile.bind(this)} friendPosts={this.state.friendPosts} getMyFriends={this.getMyFriends.bind(this)} friends={this.state.friends} closeFriends={this.state.closeFriends} pendingFriends={this.state.pendingFriends}/>}
+            {this.state.friend && <FriendPage key={5} searching={true} prompts={this.state.prompts} getFriendProfile={this.addFriendProfile.bind(this)} friendPosts={this.state.friendPosts} getMyFriends={this.getMyFriends.bind(this)} friends={this.state.friends} closeFriends={this.state.closeFriends} pendingFriends={this.state.pendingFriends} getSentRequests={this.getSentRequests.bind(this)} following = {this.state.following} requesting={this.state.requesting}/>}
                           </div>
 
                 )}
       
         </Motion>
+        
         <Motion 
             defaultStyle={{opacity: 0}}
             style={{opacity: spring(this.state.friendProfile ? 1 : 0, {stiffness: 50, damping: 20})}}
@@ -464,7 +517,7 @@ class StreamHolder extends React.Component {
         >
             {(style) => (
                 <div  style={{opacity: style.opacity}}>
-            {this.state.settings && <FriendPage key={6} searching={false} prompts={this.state.prompts} getFriendProfile={this.addFriendProfile.bind(this)} friendPosts={this.state.friendPosts} getMyFriends={this.getMyFriends.bind(this)} friends={this.state.friends} closeFriends={this.state.closeFriends} pendingFriends={this.state.pendingFriends}/>}
+            {this.state.settings && <FriendPage key={6} searching={false} prompts={this.state.prompts} getFriendProfile={this.addFriendProfile.bind(this)} friendPosts={this.state.friendPosts} getMyFriends={this.getMyFriends.bind(this)} friends={this.state.friends} closeFriends={this.state.closeFriends} pendingFriends={this.state.pendingFriends} getSentRequests={this.getSentRequests.bind(this)} following={this.state.following} requesting={this.state.requesting}/>}
                           </div>
 
                 )}

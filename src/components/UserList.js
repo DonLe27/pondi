@@ -29,6 +29,13 @@ class UserList extends React.Component{
             userType: 'p'
         })
     }
+    displaySentRequests() {
+        console.log("displaying sent requests")
+        this.setState({
+            displayList : this.props.sentRequestDisplays,
+            userType: 's'
+        })
+    }
     componentWillReceiveProps(newProps) {
         if (this.state.userType == 'f' && this.props.friendDisplays !== newProps.friendDisplays) {
             console.log("Updating friends")
@@ -48,6 +55,13 @@ class UserList extends React.Component{
                 displayList : newProps.pendingFriendDisplays
             })
           }
+          if (this.state.userType == 's' && this.props.sentRequestDisplays !== newProps.sentRequestDisplays) {
+            console.log("Updating sent requests")
+            this.setState({
+                displayList : newProps.sentRequestDisplays
+            })
+          }
+          
       }
     render(){
         console.log("Rendering UserList.js")
@@ -60,6 +74,7 @@ class UserList extends React.Component{
                     <button className={this.state.userType === 'f' ? "list-clickedButton" :"list-unclickedButton"} onClick={()=>{this.displayFriends()}}>friends</button>
                     <button className={this.state.userType === 'c' ? "list-clickedButton" :"list-unclickedButton"} onClick={()=>{this.displayCloseFriends()}}>close friends</button>
                     <button className={this.state.userType === 'p' ? "list-clickedButton" :"list-unclickedButton"} onClick={()=>{this.displayPendingFriends()}}>pending friends</button>
+                    <button className={this.state.userType === 's' ? "list-clickedButton" :"list-unclickedButton"} onClick={()=>{this.displaySentRequests()}}>sent request</button>
                 </div>
                 {this.state.displayList}
             </div>
