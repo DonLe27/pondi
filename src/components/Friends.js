@@ -144,6 +144,7 @@ class FriendPage extends React.Component{
 				})
 			}
 			else{
+				console.log("User not found")
 				this.setState({
 					searchedUser : null
 				})
@@ -177,13 +178,14 @@ class FriendPage extends React.Component{
 	componentWillReceiveProps(newProps)
 	{
 		var newSearchedUserType = "SU"
+
 		if (newProps.friends != this.props.friends){
 			var newFriendDisplays = []
 			for(var i = 0; i < newProps.friends.length; i++)
 			{
 				var followingType = this.getFollowingType(newProps.friends[i].username)
 				//Update searched friend
-				if (this.state.searchedUser && newProps.friends[i].username === this.state.searchedUser.username){
+				if (this.state.searchedUser && newProps.friends[i].username === this.state.searchedUser){
 					newSearchedUserType = "F"+followingType
 				}
 				newFriendDisplays.push(
@@ -201,7 +203,7 @@ class FriendPage extends React.Component{
 			{
 				var followingType = this.getFollowingType(newProps.pendingFriends[i].username)
 				//Update searched friend
-				if (this.state.searchedUser && newProps.pendingFriends[i].username === this.state.searchedUser.username){
+				if (this.state.searchedUser && newProps.pendingFriends[i].username === this.state.searchedUser){
 					newSearchedUserType = "P"+followingType
 				}
 				newPendingFriendDisplays.push(
@@ -219,7 +221,7 @@ class FriendPage extends React.Component{
 			{
 				var followingType = this.getFollowingType(newProps.closeFriends[i].username)
 				//Update searched friend
-				if (this.state.searchedUser && newProps.closeFriends[i].username === this.state.searchedUser.username){
+				if (this.state.searchedUser && newProps.closeFriends[i].username === this.state.searchedUser){
 					newSearchedUserType = "C"+followingType
 				}
 				newCloseFriendDisplays.push(
@@ -231,7 +233,11 @@ class FriendPage extends React.Component{
 			})
 		
 		}	
-		/*
+		console.log("Setting new state")
+		this.setState({
+			searchedUserType: newSearchedUserType
+		})
+				/*
 		if (newProps.following != this.props.following){
 			var newSentRequestDisplays = [];
 			for(var i = 0; i < newProps.sentRequests.length; i++)
@@ -249,10 +255,6 @@ class FriendPage extends React.Component{
 			})
 		}
 		*/
-		this.setState({
-			searchedUserType: newSearchedUserType
-		})
-		
 		
 	}
 	
