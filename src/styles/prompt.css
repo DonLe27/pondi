@@ -39,6 +39,7 @@
     padding-right: 5px;
     padding-top: 3vh;
     background-color: #ffffff;
+    z-index: -1;
   }
   
   .Post {

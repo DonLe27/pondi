@@ -18,6 +18,9 @@ class FilterPrompts extends React.Component {
                 </span>
                 <span className="depth-container">
                     <h>Depth</h>
+                    <div className="depth-bar">
+                        
+                    </div>
                 </span>
             </div>
         )
