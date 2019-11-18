@@ -1,0 +1,19 @@
+.filter-container{
+    height: 20vh;
+    width: 100%;
+
+}
+
+.label-container{
+    font-family: Barlow;
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+
+.depth-container{
+    font-family: Barlow;
+    float: right;
+    width: 50%;
+    height: 100%;
+}

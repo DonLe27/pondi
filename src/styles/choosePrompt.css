@@ -1,10 +1,20 @@
 
 .custom-select{
-    width: 90vh;
+    width: 98%;
     border-width: 0px;
 }
 
 .Select-arrow{
     margin-top: 0px;
     margin-bottom: 16px;
+}
+
+.filter{
+    right: 1%;
+    position: absolute;
+    top: 23%;
+}
+
+.prompt-dropdown{
+    width: 95%
 }

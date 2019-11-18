@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/choosePrompt.css';
 import Select from 'react-select'
-
+import FilterPrompts from './FilterPrompts'
 class ChoosePrompt extends React.Component {
 	
 
@@ -17,7 +17,8 @@ class ChoosePrompt extends React.Component {
 		}
 		this.state = {
 			selectedOption: {value: props.prompts[promptsLength-1].id, label: props.prompts[promptsLength-1].question},
-			selectedPrompts: prompts
+			selectedPrompts: prompts,
+			filtering: true
 		}
 		console.log(this.state.selectedOption)
 		console.log(this.state.selectedPrompts)
@@ -83,31 +84,39 @@ class ChoosePrompt extends React.Component {
 			})}
 		console.log("In render")
 		console.log(this.state.selectedPrompts)
+		if (!this.state.filtering){
 		return (
-			<div>
-		
-			<div>	
-			<Select
-			styles={customStyles}
-			className="custom-select"
-			defaultValue={this.state.selectedOption}
-			options={this.state.selectedPrompts}
-			onChange={this.handleChange}
-			maxMenuHeight="45vh"
-			isSearchable={false}
-			theme={theme => ({
-				...theme,
-				borderRadius: '12px',
-				colors: {
-				  ...theme.colors,
-				primary: 'gray'
-				},
-			  })}
-		  />
-		 
-		  </div>
-
-		  </div>
+				<div>
+			
+				<div className="prompt-dropdown">	
+				<Select
+				styles={customStyles}
+				className="custom-select"
+				defaultValue={this.state.selectedOption}
+				options={this.state.selectedPrompts}
+				onChange={this.handleChange}
+				maxMenuHeight="40vh"
+				isSearchable={false}
+				theme={theme => ({
+					...theme,
+					borderRadius: '12px',
+					colors: {
+					...theme.colors,
+					primary: 'gray'
+					},
+				})}
+			/>
+			
+			</div>
+			<span className="filter">
+			<button>Filter</button> 
+			</span>
+				
+			</div>
+			);
+		}
+		else return(
+			<FilterPrompts></FilterPrompts>
 		);
 	}
  
