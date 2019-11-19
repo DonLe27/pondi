@@ -434,6 +434,6 @@ export const cancelRequest = (friendName) => {
            } else {
              console.log("Server Error!");
            }
-         })  
+         }) 
      }
 }
