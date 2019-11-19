@@ -37,3 +37,18 @@
     width: 24px;
     height: 91%;
 }
+
+.depth-dot{
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(196, 196, 196, 0.39);
+}
+.depth-button{
+    background: #C4C4C4;
+    border-radius: 30px;
+    width: 41px;
+    height: 3px;
+    position: relative;
+    left: -8px;
+}
