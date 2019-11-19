@@ -9,12 +9,22 @@
     margin-bottom: 16px;
 }
 
-.filter{
-    right: 1%;
+.filter-toggle{
+    right: -3%;
     position: absolute;
     top: 23%;
+
+}
+
+.filter-toggle button{
+    font-family: Barlow;
+    border-radius: 15px;
+    height: 2.5vw;
+    width: 3.5vw;
+    background: rgba(217, 231, 241, 0);
 }
 
 .prompt-dropdown{
     width: 95%
 }
+

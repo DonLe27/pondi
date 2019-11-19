@@ -6,23 +6,66 @@ class FilterPrompts extends React.Component {
 	
 
 	constructor(props){
-		super(props);
-	
-	}
+        super(props);
+        this.chosenColor = "#808080"
+        this.state={
+            color1: "#C4C4C4",
+            color2: "#C4C4C4",
+            color3: "#C4C4C4"
+        }
+    }
+    
+    handleClick = (inputCategories) => {
+        console.log(inputCategories)
+        this.props.filterPrompts(inputCategories)
+        if (inputCategories[0] === "1"){
+            this.setState({
+                color1: this.chosenColor,
+                color2: "#C4C4C4",
+                color3: "#C4C4C4"
+            })
+        }
+        else  if (inputCategories[0] === "2"){
+            this.setState({
+                color2: this.chosenColor,
+                color1: "#C4C4C4",
+                color3: "#C4C4C4"
+            })
+        }
+        else  if (inputCategories[0] === "3"){
+            this.setState({
+                color3: this.chosenColor,
+                color1: "#C4C4C4",
+                color2: "#C4C4C4"
+            })
+        }
+        else{
+            this.setState({
+                color1: "#C4C4C4",
+                color2: "#C4C4C4",
+                color3: "#C4C4C4"
+            })
+        }
 
+    }
 	render() {
         return(
             <div className="filter-container">
-                <span className="label-container">
-                    <h>Filters</h>
-                </span>
                 <span className="depth-container">
-                    <h>Depth</h>
-                    <div className="depth-bar">
-                        <div style={{top:"15%"}} className="depth-button"> <span className="depth-dot"/></div>
-                        <div style={{top:"50%"}} className="depth-button"></div>
-                        <div style={{top:"85%"}} className="depth-button"></div>
-                    </div>
+                    <span className="depth-description-container">
+                            <h>depth</h>
+                            <p>1 - surface: chill, fun questions about light topics</p>
+                            <p>2 - medium: getting a bit heavier</p>
+                            <p>3 - deep: big questions about life and yourself</p>
+                            <button style={{width:"4.5vw"}} onClick={i => this.handleClick(["clear"])}>clear filter</button>
+                    </span>
+                    <span className="bar-container">
+                        <div className="depth-bar">
+                            <div onClick={i => this.handleClick(["1"])} style={{top:"15%", background:this.state.color1}} className="depth-button"> <div className="depth-dot" style={{background:this.state.color1}}/></div>
+                            <div onClick={i => this.handleClick(["2"])} style={{top:"50%", background:this.state.color2}} className="depth-button"> <div className="depth-dot" style={{background:this.state.color2}}/></div>
+                            <div onClick={i => this.handleClick(["3"])} style={{top:"85%", background:this.state.color3}} className="depth-button"> <div className="depth-dot" style={{background:this.state.color3}}/></div>
+                        </div>
+                    </span>
                 </span>
             </div>
         )

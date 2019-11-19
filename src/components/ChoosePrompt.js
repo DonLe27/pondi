@@ -18,14 +18,29 @@ class ChoosePrompt extends React.Component {
 		this.state = {
 			selectedOption: {value: props.prompts[promptsLength-1].id, label: props.prompts[promptsLength-1].question},
 			selectedPrompts: prompts,
-			filtering: true
+			filtering: false
 		}
 		console.log(this.state.selectedOption)
 		console.log(this.state.selectedPrompts)
 	}
 	
 
-	checkCategory = (inputCategories) => e => {
+	checkCategory = (inputCategories) => {
+		console.log(inputCategories)
+		if (inputCategories.length > 0 && inputCategories[0] == "clear"){
+			var promptsLength = this.props.prompts.length
+			var prompts = []
+			for(var i = promptsLength-1; i > -1; i--){
+				var id = this.props.prompts[i].id
+				var question = this.props.prompts[i].question
+				prompts.push({value: id, label: question})
+			}
+			this.setState({
+				selectedOption: {value: this.props.prompts[promptsLength-1].id, label: this.props.prompts[promptsLength-1].question},
+				selectedPrompts: prompts,
+			})
+			return;
+		}
 		var specifiedThemeList = []; //
 		for(var i = this.props.prompts.length-1; i > -1; i--){
 			var promptCategories = this.props.prompts[i].category
@@ -51,6 +66,22 @@ class ChoosePrompt extends React.Component {
 	  arrowRenderer = () => {
 		return <div></div>
 	  }
+	
+	toggleFilter = () => {
+		this.setState({filtering : !this.state.filtering})
+	}
+	componentWillMount(){
+		document.addEventListener('mousedown', this.handleClick, false);
+	}
+	componentWillUnmount(){
+		document.removeEventListener('mousedown', this.handleClick, false);
+	}
+	handleClick = (e) => {
+		if (this.node.contains(e.target)){
+			return;
+		}
+		this.setState({filtering: false})
+	}
 	render() {
 		const customStyles = {
 			option: (provided, state) => ({
@@ -84,39 +115,38 @@ class ChoosePrompt extends React.Component {
 			})}
 		console.log("In render")
 		console.log(this.state.selectedPrompts)
-		if (!this.state.filtering){
 		return (
-				<div>
-			
-				<div className="prompt-dropdown">	
-				<Select
-				styles={customStyles}
-				className="custom-select"
-				defaultValue={this.state.selectedOption}
-				options={this.state.selectedPrompts}
-				onChange={this.handleChange}
-				maxMenuHeight="40vh"
-				isSearchable={false}
-				theme={theme => ({
-					...theme,
-					borderRadius: '12px',
-					colors: {
-					...theme.colors,
-					primary: 'gray'
-					},
-				})}
-			/>
-			
-			</div>
-			<span className="filter">
-			<button>Filter</button> 
-			</span>
-				
-			</div>
-			);
-		}
-		else return(
-			<FilterPrompts></FilterPrompts>
+			<div>
+		
+			<div className="prompt-dropdown">	
+			<Select
+			styles={customStyles}
+			className="custom-select"
+			defaultValue={this.state.selectedOption}
+			options={this.state.selectedPrompts}
+			onChange={this.handleChange}
+			maxMenuHeight="40vh"
+			isSearchable={false}
+			theme={theme => ({
+				...theme,
+				borderRadius: '12px',
+				colors: {
+				...theme.colors,
+				primary: 'gray'
+				},
+			})}
+		/>
+		
+		</div>
+
+		<span ref={node => this.node=node}>
+		<span className="filter-toggle">
+			<button  onClick={this.toggleFilter}>change depth</button>
+		</span>
+			{ this.state.filtering && <FilterPrompts filterPrompts={this.checkCategory.bind(this)}></FilterPrompts>}	
+		</span>
+		
+		</div>
 		);
 	}
  

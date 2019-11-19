@@ -63,7 +63,6 @@ class UserList extends React.Component{
                     <button className={this.state.userType === 'f' ? "list-clickedButton" :"list-unclickedButton"} onClick={()=>{this.displayFriends()}}>friends</button>
                     <button className={this.state.userType === 'c' ? "list-clickedButton" :"list-unclickedButton"} onClick={()=>{this.displayCloseFriends()}}>close friends</button>
                     <button className={this.state.userType === 'p' ? "list-clickedButton" :"list-unclickedButton"} onClick={()=>{this.displayPendingFriends()}}>pending friends</button>
-                    <button className={this.state.userType === 's' ? "list-clickedButton" :"list-unclickedButton"} onClick={()=>{this.displaySentRequests()}}>sent request</button>
                 </div>
                 {this.state.displayList}
             </div>
