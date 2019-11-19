@@ -29,13 +29,7 @@ class UserList extends React.Component{
             userType: 'p'
         })
     }
-    displaySentRequests() {
-        console.log("displaying sent requests")
-        this.setState({
-            displayList : this.props.sentRequestDisplays,
-            userType: 's'
-        })
-    }
+
     componentWillReceiveProps(newProps) {
         if (this.state.userType == 'f' && this.props.friendDisplays !== newProps.friendDisplays) {
             console.log("Updating friends")
@@ -55,12 +49,7 @@ class UserList extends React.Component{
                 displayList : newProps.pendingFriendDisplays
             })
           }
-          if (this.state.userType == 's' && this.props.sentRequestDisplays !== newProps.sentRequestDisplays) {
-            console.log("Updating sent requests")
-            this.setState({
-                displayList : newProps.sentRequestDisplays
-            })
-          }
+
           
       }
     render(){

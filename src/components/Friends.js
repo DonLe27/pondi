@@ -195,13 +195,13 @@ class FriendPage extends React.Component{
 	}
 	componentWillReceiveProps(newProps)
 	{
-		console.log(newProps.requesting)
-		console.log(newProps.following)
+		var changedFollowing = (newProps.following !== this.props.following) || (newProps.requesting !== this.props.requesting)
 		var first = "S";
-		if (newProps.friends != this.props.friends){
+		if (changedFollowing || newProps.friends !== this.props.friends){
 			var newFriendDisplays = []
 			for(var i = 0; i < newProps.friends.length; i++)
 			{
+				console.log(newProps.friends[i].username)
 				var followingType = this.getFollowingTypeNewProps(newProps.friends[i].username, newProps)
 				//Update searched friend
 				if (this.state.searchedUser && newProps.friends[i].username === this.state.searchedUser){
@@ -214,12 +214,13 @@ class FriendPage extends React.Component{
 			this.setState({
 				friendDisplays: newFriendDisplays,
 			})
-	
+	 
 		}
-		if (newProps.pendingFriends != this.props.pendingFriends){
+		if (changedFollowing ||newProps.pendingFriends !== this.props.pendingFriends){
 			var newPendingFriendDisplays = []
 			for(var i = 0; i < newProps.pendingFriends.length; i++)
 			{
+				console.log(newProps.pendingFriends[i].username)
 				var followingType = this.getFollowingTypeNewProps(newProps.pendingFriends[i].username, newProps)
 				//Update searched friend
 				if (this.state.searchedUser && newProps.pendingFriends[i].username === this.state.searchedUser){
@@ -234,7 +235,7 @@ class FriendPage extends React.Component{
 			})
 			console.log(newProps.pendingFriends)
 		}	
-		if (newProps.closeFriends != this.props.closeFriends){
+		if (changedFollowing || newProps.closeFriends !== this.props.closeFriends){
 			var newCloseFriendDisplays = []
 			for(var i = 0; i < newProps.closeFriends.length; i++)
 			{
@@ -253,12 +254,13 @@ class FriendPage extends React.Component{
 		
 		}	
 		if(this.state.searchedUser){
+			console.log(first)
 			var followingType = this.getFollowingTypeNewProps(this.state.searchedUser, newProps)
-		}
-		console.log("Setting new state " + first + followingType)
-		this.setState({
-			searchedUserType: first + followingType
-		})	
+			console.log("Setting new state " + first + followingType)
+			this.setState({
+				searchedUserType: first + followingType
+			})	
+		}		
 		/*
 		if (newProps.following != this.props.following){
 			var newSentRequestDisplays = [];
@@ -316,7 +318,7 @@ class FriendPage extends React.Component{
 		else{
 			return (
 				<div className="FriendContainer">
-					<UserList friendDisplays={this.state.friendDisplays} closeFriendDisplays={this.state.closeFriendDisplays} pendingFriendDisplays={this.state.pendingFriendDisplays} sentRequestDisplays={this.state.sentRequestDisplays}></UserList>
+					<UserList friendDisplays={this.state.friendDisplays} closeFriendDisplays={this.state.closeFriendDisplays} pendingFriendDisplays={this.state.pendingFriendDisplays} ></UserList>
 
 				</div>
 				);
