@@ -180,7 +180,8 @@ class StreamHolder extends React.Component {
                         var allFollowing = JSON.parse(data);
                         console.log("FETCHED SENT" + allFollowing);
                         this.setState({
-                            sentRequests : allFollowing["requesting"]
+                            requesting : allFollowing["requesting"],
+                            following : allFollowing["following"]
                         })
                     })
                 }

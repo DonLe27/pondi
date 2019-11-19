@@ -13,7 +13,7 @@ class FriendPage extends React.Component{
 		var friendDisplays = [];
 		var closeFriendDisplays = [];
 		var pendingFriendDisplays = [];
-		var sentRequestDisplays = [];
+		var followingDisplays = [];
 		this.userFunctions = {
 			acceptFriend: this.acceptFriendHandler.bind(this),
 			acceptCloseFriend: this.acceptCloseFriendHandler.bind(this),
@@ -44,19 +44,21 @@ class FriendPage extends React.Component{
 				<UserDisplay key={this.props.pendingFriends[i]["username"] + ' p'} userType={"P"+followingType} userFunctions={this.userFunctions}  username={this.props.pendingFriends[i]["username"]} avatar={this.props.pendingFriends[i]["avatar"]}/>
 			)
 		}
-		/*
-		for(var i = 0; i < props.reqAndFollowing.length; i++)
+		/*I 
+		for(var i = 0; i < props.following.length; i++)
 		{
-			sentRequestDisplays.push(
-				<UserDisplay key={this.props.pendingFriends[i]["username"] + ' r'} userType="sentRequest" cancelRequest={this.cancelRequestHandler.bind(this)} username={this.props.pendingFriends[i]["username"]} avatar={this.props.pendingFriends[i]["avatar"]}/>
+			
+			followingDisplays.push(
+				<UserDisplay key={this.props.following[i]["username"] + ' r'} userType={"F"+followingType} userFunctions={this.userFunctions} username={this.props.following[i]["username"]} avatar={this.props.following[i]["avatar"]}/>
 			)
 		}
 		*/
+		
 		this.state = {
 			friendDisplays : friendDisplays,
 			closeFriendDisplays : closeFriendDisplays,
 			pendingFriendDisplays : pendingFriendDisplays,
-			sentRequestDisplays : sentRequestDisplays,
+			followingDisplays : followingDisplays,
 			searchedUser : null, 
 			searchedUserType: null,
 			searching: this.props.searching
@@ -116,6 +118,22 @@ class FriendPage extends React.Component{
 		return following ? "F" : (requesting ? "R" : "U")
 
 	}
+	getFollowingTypeNewProps = (friendname, newProps) => {
+		for(var i = 0; i < newProps.requesting.length; i++)
+		{
+			if(newProps.requesting[i]["username"] == friendname){
+				return "R";
+			}
+		}
+		for(var i = 0; i < newProps.following.length; i++)
+		{
+			if(newProps.following[i]["username"] == friendname){
+				return "F"
+			}
+		}
+		return "U"
+
+	}
 	searchUserHandler = (friendname) => {
 		console.log("Searching for: " + friendname)
 		var followingType = this.getFollowingType(friendname)
@@ -166,27 +184,28 @@ class FriendPage extends React.Component{
 	}
 	requestFriendHandler = (friendname) => {
 		this.props.sendRequest(friendname);
-		//this.props.getSentRequests();
+		this.props.getSentRequests();
 	}
 	cancelRequestHandler = (friendname) => {
 		this.props.cancelRequest(friendname);
-		//this.props.getSentRequests();
+		this.props.getSentRequests();
 	}
 	sendRequestHandler = (friendname) => {
 		console.log("SENT FRIEND REQUEST TO " + friendname)
 	}
 	componentWillReceiveProps(newProps)
 	{
-		var newSearchedUserType = "SU"
-
+		console.log(newProps.requesting)
+		console.log(newProps.following)
+		var first = "S";
 		if (newProps.friends != this.props.friends){
 			var newFriendDisplays = []
 			for(var i = 0; i < newProps.friends.length; i++)
 			{
-				var followingType = this.getFollowingType(newProps.friends[i].username)
+				var followingType = this.getFollowingTypeNewProps(newProps.friends[i].username, newProps)
 				//Update searched friend
 				if (this.state.searchedUser && newProps.friends[i].username === this.state.searchedUser){
-					newSearchedUserType = "F"+followingType
+					first = "F"
 				}
 				newFriendDisplays.push(
 					<UserDisplay key={newProps.friends[i]["username"] + ' c'} userType={"F"+followingType} userFunctions={this.userFunctions}  username={newProps.friends[i]["username"]} avatar={newProps.friends[i]["avatar"]}/>
@@ -201,10 +220,10 @@ class FriendPage extends React.Component{
 			var newPendingFriendDisplays = []
 			for(var i = 0; i < newProps.pendingFriends.length; i++)
 			{
-				var followingType = this.getFollowingType(newProps.pendingFriends[i].username)
+				var followingType = this.getFollowingTypeNewProps(newProps.pendingFriends[i].username, newProps)
 				//Update searched friend
 				if (this.state.searchedUser && newProps.pendingFriends[i].username === this.state.searchedUser){
-					newSearchedUserType = "P"+followingType
+					first = "P"
 				}
 				newPendingFriendDisplays.push(
 					<UserDisplay key={newProps.pendingFriends[i]["username"] + ' c'} userType={"P"+followingType}  userFunctions={this.userFunctions}  username={newProps.pendingFriends[i]["username"]} avatar={newProps.pendingFriends[i]["avatar"]}/>
@@ -219,10 +238,10 @@ class FriendPage extends React.Component{
 			var newCloseFriendDisplays = []
 			for(var i = 0; i < newProps.closeFriends.length; i++)
 			{
-				var followingType = this.getFollowingType(newProps.closeFriends[i].username)
+				var followingType = this.getFollowingTypeNewProps(newProps.closeFriends[i].username, newProps)
 				//Update searched friend
 				if (this.state.searchedUser && newProps.closeFriends[i].username === this.state.searchedUser){
-					newSearchedUserType = "C"+followingType
+					first = "C"
 				}
 				newCloseFriendDisplays.push(
 					<UserDisplay key={newProps.closeFriends[i]["username"] + ' c'} userType={"C"+followingType} userFunctions={this.userFunctions}  username={newProps.closeFriends[i]["username"]} avatar={newProps.closeFriends[i]["avatar"]}/>
@@ -233,28 +252,37 @@ class FriendPage extends React.Component{
 			})
 		
 		}	
-		console.log("Setting new state")
+		if(this.state.searchedUser){
+			var followingType = this.getFollowingTypeNewProps(this.state.searchedUser, newProps)
+		}
+		console.log("Setting new state " + first + followingType)
 		this.setState({
-			searchedUserType: newSearchedUserType
-		})
-				/*
+			searchedUserType: first + followingType
+		})	
+		/*
 		if (newProps.following != this.props.following){
 			var newSentRequestDisplays = [];
-			for(var i = 0; i < newProps.sentRequests.length; i++)
+			for(var i = 0; i < newProps.following.length; i++)
 			{
-				//Update searched friend
-				if (newProps.sentRequests[i].username === this.state.searchedUser.username){
-					newSearchedUserType = "sentRequest"
-				}
+				var followingType = this.getFollowingTypeNewProps(newProps.following[i].username, newProps)
+				//Update searched friend	
+			
+				/*
 				newSentRequestDisplays.push(
-					<UserDisplay key={newProps.sentRequests[i]["username"] + ' c'} userType="sentRequest" cancelRequest={this.cancelRequestHandler.bind(this)} username={newProps.sentRequests[i]["username"]} avatar={newProps.sentRequests[i]["avatar"]}/>
+					<UserDisplay key={newProps.following[i]["username"] + ' c'} userType={first+followingType} userFunctions={this.userFunctions} username={newProps.following[i]["username"]} avatar={newProps.following[i]["avatar"]}/>
 				)
+				
 			}
+
 			this.setState({
-				sentRequestDisplays: newSentRequestDisplays,
+				sentRequestDisplays: first+followingType,
 			})
 		}
+
 		*/
+
+
+
 		
 	}
 	
