@@ -61,9 +61,15 @@ class FilterPrompts extends React.Component {
                     </span>
                     <span className="bar-container">
                         <div className="depth-bar">
-                            <div onClick={i => this.handleClick(["1"])} style={{top:"15%", background:this.state.color1}} className="depth-button"> <div className="depth-dot" style={{background:this.state.color1}}/></div>
-                            <div onClick={i => this.handleClick(["2"])} style={{top:"50%", background:this.state.color2}} className="depth-button"> <div className="depth-dot" style={{background:this.state.color2}}/></div>
-                            <div onClick={i => this.handleClick(["3"])} style={{top:"85%", background:this.state.color3}} className="depth-button"> <div className="depth-dot" style={{background:this.state.color3}}/></div>
+                            <div onClick={i => this.handleClick(["1"])}  style={{top:"6%"}} className="depth-button-wrapper">
+                                <div style={{background:this.state.color1}} className="depth-button"> <div className="depth-dot" style={{background:this.state.color1}}/></div>
+                            </div>
+                            <div onClick={i => this.handleClick(["2"])}  style={{top:"31%"}} className="depth-button-wrapper">
+                                <div  style={{background:this.state.color2}} className="depth-button"> <div className="depth-dot" style={{background:this.state.color2}}/></div>
+                            </div>
+                            <div onClick={i => this.handleClick(["3"])} style={{top:"56%"}} className="depth-button-wrapper">
+                                <div  style={{background:this.state.color3}} className="depth-button"> <div className="depth-dot" style={{background:this.state.color3}}/></div>
+                            </div>
                         </div>
                     </span>
                 </span>

@@ -23,6 +23,8 @@ class Prompt extends React.Component {
       promptId: this.props.prompts[this.props.prompts.length-1].id,
       myposts: this.props.myposts,
     };
+
+  
   }
   componentWillReceiveProps(newProps)
 	{
@@ -35,6 +37,14 @@ class Prompt extends React.Component {
   }
   promptChangeHandler = (newPrompt) => {
     //newPrompt holds id of prompt which is +1 the index value
+    var promptIndex = -1;
+    for (var j = 0; j < this.props.prompts.length; j++){
+      if (this.props.prompts[j].id == newPrompt){
+        promptIndex = j;
+        break;
+      }
+    }
+    console.log(newPrompt)
     var exist = false;
     let postIndex = -1;
     var i;
@@ -55,7 +65,7 @@ class Prompt extends React.Component {
         body: this.state.myposts[postIndex].body,
         theme: this.state.myposts[postIndex].theme,
         privacy: this.state.myposts[postIndex].privacy,
-        prompt: this.props.prompts[newPrompt-1].question,
+        prompt: this.props.prompts[promptIndex].question,
         promptId: newPrompt,
       });
     }
@@ -66,7 +76,7 @@ class Prompt extends React.Component {
         theme: "",
         privacy: "p",
         promptId: newPrompt,
-        prompt: this.props.prompts[newPrompt-1].question
+        prompt: this.props.prompts[promptIndex].question
       });
     }
   }
@@ -144,13 +154,20 @@ class Prompt extends React.Component {
         exist = true;
       }
     }
+    var promptIndex = -1;
+    for (var j = 0; j < this.props.prompts.length; j++){
+      if (this.props.prompts[j].id == this.state.promptId){
+        promptIndex = j;
+        break;
+      }
+    }
     if (exist)
     {
       this.setState({
         body: this.state.myposts[postIndex].body,
         theme: this.state.myposts[postIndex].theme,
         privacy: this.state.myposts[postIndex].privacy,
-        prompt: this.props.prompts[this.state.promptId-1].question
+        prompt: this.props.prompts[promptIndex].question
       });
     }
   }

@@ -55,7 +55,15 @@
     width: 41px;
     height: 3px;
     position: relative;
-    left: -8px;
+    top: 50%;
+    left: 12%;
+}
+
+.depth-button-wrapper{
+    position: relative;
+    right: 54%;
+    width: 138%;
+    height: 30px;
 }
 
 .depth-description-container{
@@ -72,6 +80,7 @@
     height: 4vh;
     left: 32%;
     position: relative;
+    font-size: 0.75vw;
 }
 
 

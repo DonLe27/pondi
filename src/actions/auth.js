@@ -424,7 +424,7 @@ export const cancelRequest = (friendName) => {
          headers["Authorization"] = `Token ${token}`;
        }
        console.log("Header: " + headers.Authorization)
-       return fetch("http://backpondi.herokuapp.com/api/auth/following/", {headers : headers, body : JSON.stringify(postBody), method: "POST"})
+       return fetch(BASE_URL + "/api/auth/following/", {headers : headers, body : JSON.stringify(postBody), method: "POST"})
          .then(res => {
            console.log('Cancel Friend Request Response:', res);
            if (res.status < 500) {

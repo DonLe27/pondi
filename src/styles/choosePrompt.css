@@ -20,8 +20,9 @@
     font-family: Barlow;
     border-radius: 15px;
     height: 2.5vw;
-    width: 3.5vw;
+    width: 4.5vw;
     background: rgba(217, 231, 241, 0);
+    font-size: 0.75vw;
 }
 
 .prompt-dropdown{
