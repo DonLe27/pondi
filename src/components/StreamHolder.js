@@ -173,7 +173,7 @@ class StreamHolder extends React.Component {
             headers["Authorization"] = `Token ${token}`;
         }
         setTimeout(() => {
-            fetch('http://backpondi.herokuapp.com/api/auth/following/', {headers, method: "GET"})
+            fetch('https://backpondi.herokuapp.com/api/auth/following/', {headers, method: "GET"})
             .then(res => {
                 if(res.status < 500) {
                     return res.json().then(data => {
@@ -355,7 +355,7 @@ class StreamHolder extends React.Component {
         //get sent requests
         console.log("Before fetch")
         setTimeout(() => {
-            fetch('http://backpondi.herokuapp.com/api/auth/following/', {headers, method: "GET"})
+            fetch('https://backpondi.herokuapp.com/api/auth/following/', {headers, method: "GET"})
             .then(res => {
                 if(res.status < 500) {
                     return res.json().then(data => {
