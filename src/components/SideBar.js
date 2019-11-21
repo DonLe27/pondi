@@ -45,7 +45,7 @@ class SideBar extends React.Component {
         <ProfPic classType="avatar" color={this.props.color} avatar={this.props.avatar} />
 
         <Username username={displayName} />
-        <Button
+        <Button title="Place to view your own posts!"
           className="Button"
           block
           bsSize="large"
@@ -54,7 +54,7 @@ class SideBar extends React.Component {
         >
           pond
         </Button>
-        <Button
+        <Button title="Place to view your friends' posts!"
           className="Button"
           block
           bsSize="large"
@@ -63,7 +63,7 @@ class SideBar extends React.Component {
         >
           stream
         </Button>
-        <Button
+        <Button title="Place to view anonymous, public posts!"
           className="Button"
           block
           bsSize="large"

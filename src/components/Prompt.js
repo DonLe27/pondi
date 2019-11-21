@@ -208,10 +208,10 @@ class Prompt extends React.Component {
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Globe_icon.svg/768px-Globe_icon.svg.png"
           />
         <div className="privacy-container">
-        {this.state.privacy == "p" && <button className="privacy-button" onClick={()=> {this.privacyHandler()}}>Private</button>}
-        {this.state.privacy == "c" && <button className="privacy-button" onClick={()=> {this.privacyHandler()}}>Close Friends</button>}
-        {this.state.privacy == "f" && <button className="privacy-button" onClick={()=> {this.privacyHandler()}}>Friends</button>}
-        {this.state.privacy == "o" && <button className="privacy-button" onClick={()=> {this.privacyHandler()}}>Ocean</button>}
+        {this.state.privacy == "p" && <button title="Make your post private" className="privacy-button" onClick={()=> {this.privacyHandler()}}>Private</button>}
+        {this.state.privacy == "c" && <button title="Make your post viewable to close friends" className="privacy-button" onClick={()=> {this.privacyHandler()}}>Close Friends</button>}
+        {this.state.privacy == "f" && <button title="Make your post viewable to friends" className="privacy-button" onClick={()=> {this.privacyHandler()}}>Friends</button>}
+        {this.state.privacy == "o" && <button title="Make your post viewable anonymously to anyone" className="privacy-button" onClick={()=> {this.privacyHandler()}}>Ocean</button>}
         </div>
         </div>
         <div className="post-container">
