@@ -437,3 +437,4 @@ export const cancelRequest = (friendName) => {
          }) 
      }
 }
+//Yes
