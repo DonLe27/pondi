@@ -1,7 +1,7 @@
 import React from 'react';
 import "../styles/sidebarButtons.css";
 import settingsSearch from "../styles/vectors/settings-search.png";
-import settingsGear from "../styles/vectors/settings.png";
+import settingsGear from "../styles/vectors/friends.png";
 class SidebarButtons extends React.Component{
     constructor(props)
     {
