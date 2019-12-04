@@ -15,7 +15,7 @@ class Ocean extends React.Component {
 		console.log(this.props.oceanPosts)
 		this.prompts = [];
 		this.allprompts = this.props.prompts
-		for (var i = 0; i < this.props.oceanPosts.length; i++){
+		for (var i = this.props.oceanPosts.length - 1; i >= 0; i--){
 			var p = this.props.oceanPosts[i];
 
 			this.prompts.push(

@@ -17,7 +17,7 @@ class Archive extends React.Component{
 		this.prompts = [];
 		this.allprompts = this.props.prompts
 
-		for (var i = 0; i < this.props.myposts.length; i++){
+		for (var i = this.props.myposts.length-1; i >= 0 ; i--){
 			var p = this.props.myposts[i];
 			var question;
 			for (var j = 0; j < this.props.prompts.length; j++){

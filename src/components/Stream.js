@@ -14,12 +14,16 @@ class Stream extends React.Component{
 		this.avatar=this.props.avatar;
 		this.prompts = [];
 		this.allprompts = this.props.prompts
+		var dupDic = {}
 		console.log(this.props.friendPosts)
-		for (var i = 0; i < this.props.friendPosts.length; i++){
+		for (var i = this.props.friendPosts.length - 1; i >= 0; i--){
 			var p = this.props.friendPosts[i];
-			this.prompts.push(
-				<PromptDisplay key={i} title={p.prompt.question} content={p["body"]} date={p["timestamp"]} avatar={p.profile.animal} first_name={p.profile.first_name} last_name={p.profile.last_name}/>
-					);
+			if (!((p.prompt.question + p.profile.first_name + p.profile.last_name + p["timestamp"]) in dupDic)){
+				dupDic[p.prompt.question + p.profile.first_name + p.profile.last_name + p["timestamp"]] = 1;
+				this.prompts.push(
+					<PromptDisplay key={i} title={p.prompt.question} content={p["body"]} date={p["timestamp"]} avatar={p.profile.animal} first_name={p.profile.first_name} last_name={p.profile.last_name}/>
+						);
+				}
 		}
 	}
 
